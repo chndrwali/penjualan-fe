@@ -9,6 +9,7 @@ export default function Header() {
     const handleHamburgerClick = () => {
     setIsHamburgerOpen(!isHamburgerOpen);
   };
+  
     return (
         <header className="bg-white absolute top-0 left-0 w-full flex items-center z-10 justify-center">
       <div className="container md:mx-12 lg:mx-20">

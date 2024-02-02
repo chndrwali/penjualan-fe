@@ -11,7 +11,7 @@ body {
 }
 
 .nav-link {
-  @apply flex items-center text-base text-dark py-2 mx-6 lg:mx-4 min-h-[44px] min-w-[44px];
+  @apply flex items-center text-base text-gray-600 py-2 mx-6 lg:mx-4 min-h-[44px] min-w-[44px];
 }
 
 .nav-link:hover {
@@ -32,7 +32,7 @@ body {
 
 @layer components {
   .hamburger-line {
-    @apply w-[30px] h-[2px] my-2 block bg-dark;
+    @apply w-[30px] h-[2px] my-2 block bg-graytext-gray-600;
   }
 }
 
