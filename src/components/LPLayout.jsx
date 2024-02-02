@@ -1,10 +1,13 @@
 import React from 'react';
 import Header from './LPheader/Header';
 import Footer from './LPfooter/Footer';
+import BackToTop from './BackToTop';
+import SkipToContent from './SkipToContent';
 
 export default function LPLayout({ children }) {
     return (
         <>
+      <SkipToContent />
       <Header />
       <main
         id="content"
@@ -12,6 +15,7 @@ export default function LPLayout({ children }) {
       >
         {children}
       </main>
+      <BackToTop />
       <Footer />
     </>
     )
