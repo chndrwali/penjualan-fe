@@ -2,7 +2,7 @@
 import React from 'react';
 import {
   FaGithub, FaTwitter, FaInstagram, FaLinkedin,
-} from 'react-icons/fa'; // Import ikon media sosial
+} from 'react-icons/fa';
 import { footer } from '../data/landingpageData';
 
 function Footer() {
