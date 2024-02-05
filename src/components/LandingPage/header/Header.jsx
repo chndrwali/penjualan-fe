@@ -16,7 +16,7 @@ function Header() {
         <div className="flex items-center justify-between relative">
           <div className="px-4">
             <span className="font-bold text-lg text-primary block py-4">
-              <img src="/img/logo/logo383.png" alt="Logo" className="w-10 h-10" />
+              <img src="/logo/android-chrome-512x512.png" alt="Logo" className="w-12 h-12" />
             </span>
           </div>
           <div className="flex items-center justify-center px-4">
