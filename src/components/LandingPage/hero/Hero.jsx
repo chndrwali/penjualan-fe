@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-import React from 'react';
 import { motion } from 'framer-motion';
 import HeroLeft from './HeroLeft';
 import HeroRight from './HeroRight';

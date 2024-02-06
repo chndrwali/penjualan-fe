@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-import React from 'react';
 import {
   FaGithub, FaTwitter, FaInstagram, FaLinkedin,
 } from 'react-icons/fa';

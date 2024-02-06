@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import HamburgerButton from './HamburgerButton';
 import Navbar from './Navbar';
 import { Link } from 'react-router-dom';

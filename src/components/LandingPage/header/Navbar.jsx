@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 function Navbar({ isHamburgerOpen }) {
