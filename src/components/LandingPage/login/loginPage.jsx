@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaGoogle } from 'react-icons/fa';
+import { Link } from 'react-router-dom'; // Import Link from 'react-router-dom'
 
 const LoginPage = () => {
   const containerVariants = {
@@ -111,6 +112,9 @@ const LoginPage = () => {
           <FaGoogle className="mr-2" />
           Login with Google
         </button>
+        <p className="mt-4 text-sm text-gray-600 text-center">
+          Don{`'`}t have an account? <Link to="/signup" className="text-brown-800">Sign up here</Link>.
+        </p>
       </motion.div>
     </motion.div>
   );
