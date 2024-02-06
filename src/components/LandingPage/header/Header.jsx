@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import HamburgerButton from './HamburgerButton';
 import Navbar from './Navbar';
+import { Link } from 'react-router-dom';
 
 function Header() {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
@@ -14,11 +15,10 @@ function Header() {
     <header className="bg-white absolute top-0 left-0 w-full flex items-center z-10 justify-center">
       <div className="container md:mx-12 lg:mx-20">
         <div className="flex items-center justify-between relative">
-          <div className="px-4">
-            <span className="font-bold text-lg text-primary block py-4">
-              <img src="/logo/android-chrome-512x512.png" alt="Logo" className="w-12 h-12" />
-            </span>
-          </div>
+        <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+          <img src="./logo/android-chrome-512x512.png" className="h-8" alt="Rukun Perkasa Logo" />
+          <span className="self-center text-2xl font-semibold whitespace-nowrap text-brown-800">Rukun Perkasa</span>
+        </Link>
           <div className="flex items-center justify-center px-4">
             <HamburgerButton
               isHamburgerOpen={isHamburgerOpen}
