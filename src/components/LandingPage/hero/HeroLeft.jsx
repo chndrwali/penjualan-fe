@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -17,8 +15,13 @@ function HeroLeft({ hero }) {
       initial="hidden"
       animate="visible"
     >
-      <h1 className="font-bold text-brown-500 text-4xl mb-4 lg:text-6xl">
-      Kusen kayu kami menjamin ketahanan luar biasa
+      <h1 className="font-bold text-4xl mb-4 lg:text-5xl">
+        <span
+          className="bg-gradient-to-tr from-brown-500 via-coffee-400 to-earth-500 bg-clip-text text-transparent"
+          style={{ WebkitTextFillColor: 'transparent' }}
+        >
+          Kusen kayu kami menjamin ketahanan luar biasa
+        </span>
       </h1>
       <h2 className="font-semibold text-dark text-xl mb-3 lg:text-3xl">{hero.subtitle}</h2>
       <motion.p
