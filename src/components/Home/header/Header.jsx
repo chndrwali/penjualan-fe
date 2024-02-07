@@ -1,75 +1,94 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaShoppingCart } from 'react-icons/fa';
+import { FiShoppingCart, FiUser, FiLogOut } from 'react-icons/fi';
 
-function Header() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+const Header = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
+    const [isProfileOpen, setIsProfileOpen] = useState(false); // State for profile dropdown
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
 
-  return (
-    <nav className="bg-white border-gray-200 relative z-10">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <div className="flex items-center space-x-3 ">
-          <Link to="/" className="flex items-center">
-            <img src="./logo/android-chrome-512x512.png" className="h-8" alt="Rukun Perkasa Logo" />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap text-brown-800">Rukun Perkasa</span>
-          </Link>
-        </div>
-        <div className="flex items-center md:order-2 space-x-3 md:space-x-0 ml-auto">
-        <Link to="/purchase-history" className="text-sm text-gray-800 px-2 hover:text-brown-600 ">
-            Riwayat
-          </Link>
-          <Link to="/cart" className="text-gray-500 hover:text-brown-500 hover:bg-gray-100 px-2 focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg text-sm p-2.5" aria-label="Shopping cart">
-            <FaShoppingCart className="w-5 h-5" />
-            <span className="sr-only">Shopping cart</span>
-          </Link>
-    
-          <button
-            type="button"
-            className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300"
-            id="user-menu-button"
-            aria-expanded={isDropdownOpen}
-            onClick={toggleDropdown}
-          >
-            <span className="sr-only">Open user menu</span>
-            <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo" />
-          </button>
-          <div className={`absolute top-full right-0 z-20 ${isDropdownOpen ? 'block' : 'hidden'} my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow `} id="user-dropdown">
-            <div className="px-4 py-3">
-              <span className="block text-sm text-gray-900 ">Bonnie Green</span>
-              <span className="block text-sm text-gray-500 truncate ">name@flowbite.com</span>
-            </div>
-            <ul className="py-2" aria-labelledby="user-menu-button">
-              <li>
-                <Link to="/dashboard" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 " onClick={toggleDropdown}>
-                  Dashboard
-                </Link>
-              </li>
-              <li>
-                <Link to="/settings" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onClick={toggleDropdown}>
-                  Settings
-                </Link>
-              </li>
-              <li>
-                <Link to="/earnings" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 " onClick={toggleDropdown}>
-                  Earnings
-                </Link>
-              </li>
-              <li>
-                <Link to="/sign-out" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 " onClick={toggleDropdown}>
-                  Sign out
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </nav>
-  );
-}
+    const toggleProfileDropdown = () => {
+        setIsProfileOpen(!isProfileOpen);
+    };
+
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+    };
+
+    const closeProfileDropdown = () => {
+        setIsProfileOpen(false);
+    };
+
+    // Dummy user data
+    const user = {
+        name: 'Khatab wedaa',
+        email: 'khatab@example.com',
+    };
+
+    return (
+        <>
+            <nav className="relative bg-white shadow dark:bg-gray-800">
+                <div className="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
+                    <div className="flex items-center justify-between">
+                        <Link to="/">
+                            <img className="w-auto h-6 sm:h-7" src="https://merakiui.com/images/full-logo.svg" alt="" />
+                        </Link>
+                        <div className="flex lg:hidden">
+                            <button onClick={() => { toggleMenu(); closeProfileDropdown(); }} type="button" className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400" aria-label="toggle menu">
+                                {!isMenuOpen ? (
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                                    </svg>
+                                ) : (
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                )}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 ${isMenuOpen ? 'block' : 'hidden'} md:mt-0 md:p-0 md:top-0 md:relative md:bg-transparent md:w-auto md:opacity-100 md:translate-x-0 md:flex md:items-center`}>
+                        <div className="flex flex-col md:flex-row md:mx-6">
+                            <Link to="/" onClick={closeMenu} className="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">Home</Link>
+                            <Link to="/shop" onClick={closeMenu} className="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">Shop</Link>
+                            <Link to="/contact" onClick={closeMenu} className="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">Contact</Link>
+                            <Link to="/about" onClick={closeMenu} className="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">About</Link>
+                        </div>
+
+                        <div className="flex items-center mt-4 md:mt-0">
+                            <Link to='/cart' className="mx-4 text-gray-600 transition-colors duration-300 transform lg:block dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-400 focus:text-gray-700 dark:focus:text-gray-400 focus:outline-none" aria-label="show notifications">
+                                <FiShoppingCart className="w-6 h-6" />
+                            </Link>
+
+                            <div className="relative">
+                                <button onClick={toggleProfileDropdown} type="button" className="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
+                                    <FiUser className="w-6 h-6" />
+                                    <span className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">{user.name}</span>
+                                </button>
+                                {isProfileOpen && (
+                                    <div className="origin-top-right absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
+                                        <div className="block px-4 py-2 text-sm text-gray-700">{user.name}</div>
+                                        <div className="block px-4 py-2 text-sm text-gray-700">{user.email}</div>
+                                        <Link to="/transactions" onClick={closeMenu} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Riwayat Transaksi</Link>
+                                        <Link to="/settings" onClick={closeMenu} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Setelan</Link>
+                                        <Link to="/track" onClick={closeMenu} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Track Resi</Link>
+                                        <button onClick={() => console.log('logout')} className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-left">
+                                            <FiLogOut className="w-4 h-4 inline-block -mt-1 mr-1" />
+                                            Logout
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </>
+    );
+};
 
 export default Header;

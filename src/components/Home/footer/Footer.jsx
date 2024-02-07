@@ -5,8 +5,12 @@ import { footer } from '../data/homeData';
 
 function Footer() {
   return (
-    <footer className="bg-black flex items-center justify-center p-4 md:px-12">
-      <div className="max-w-5xl px-4 py-6 sm:px-6 lg-px-8">
+    <footer className="bg-black">
+      <div className="container flex flex-col items-center justify-between p-6 mx-auto space-y-4 sm:space-y-0 sm:flex-row">
+      <a href="#" className='flex items-center'>
+            <img className="w-auto h-12 mr-1" src="./logo/android-chrome-512x512.png" alt="" />
+            <span className="text-xl font-semibold whitespace-nowrap text-brown-400">Rukun Perkasa</span>
+        </a>
         <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-white md:w-auto">
           &copy;
           {' '}
