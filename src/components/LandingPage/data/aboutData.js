@@ -7,16 +7,35 @@ const about = {
 
   const testimoniData = [
     {
-      photo: '/logo/android-chrome-512x512.png',
-      quote: 'Testimoni pertama',
-      name: 'Nama Pengguna 1',
+      photo: '/img/yanaumar.webp',
+      quote: 'Mantap!! kualitas kayu nya bagus, owner nya ramah, mengerti apa yang client butuhkan. next order lagi di Rukun Perkasa',
+      name: 'Yana Umar',
+      position: 'Mantan Dirigen Viking Persib Club'
     },
     {
-      photo: 'url_to_profile_photo_2',
-      quote: 'Testimoni kedua',
-      name: 'Nama Pengguna 2',
+      photo: '/img/ridwankamil.webp',
+      quote: 'Rukun Perkasa sungguh luar biasa! Kayu yang mereka sediakan memiliki kualitas yang sangat baik. Pelayanan yang ramah dan profesional membuat proses pemesanan menjadi menyenangkan. Saya pasti akan merekomendasikan Rukun Perkasa kepada siapa pun yang membutuhkan kayu berkualitas tinggi.',
+      name: 'Ridwan Kamil',
+      position: 'Mantan Gubernur Jawa Barat'
     },
-    // Dan seterusnya
+    {
+      photo: '/img/raisa.webp',
+      quote: 'Saya sangat senang dengan hasilnya setelah memesan kayu dari Rukun Perkasa. Kayu yang mereka sediakan sangat kuat dan tahan lama. Selain itu, pelayanan yang ramah dan responsif membuat proses pemesanan menjadi sangat menyenangkan. Terima kasih Rukun Perkasa!',
+      name: 'Raisa Andriyana',
+      position: 'Penyanyi'
+    },
+    {
+      photo: '/img/natasha.webp',
+      quote: 'Rukun Perkasa sungguh luar biasa! Kayu yang mereka sediakan memiliki kualitas yang sangat baik. Pelayanan yang ramah dan profesional membuat proses pemesanan menjadi menyenangkan. Saya pasti akan merekomendasikan Rukun Perkasa kepada siapa pun yang membutuhkan kayu berkualitas tinggi.',
+      name: 'Natasha Wilona',
+      position: 'Aktor'
+    },
+    {
+      photo: '/img/diansastro.webp',
+      quote: 'Saya sangat puas dengan layanan Rukun Perkasa! Kayu yang mereka sediakan sangat berkualitas dan sesuai dengan yang saya butuhkan. Prosesnya juga sangat cepat dan efisien. Terima kasih Rukun Perkasa!',
+      name: 'Dian Sastro',
+      position: 'Aktris'
+    },
   ];
   
 

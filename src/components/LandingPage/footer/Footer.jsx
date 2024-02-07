@@ -63,10 +63,10 @@ function Footer() {
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               <div>
                 <h3 className="text-gray-50 uppercase ">{footer.about.title}</h3>
-                <a href="/about" className="block mt-2 text-sm text-gray-50 hover:underline">
+                <a href="/about" className="block mt-2 text-sm text-gray-50 hover:underline hover:text-brown-400">
                   {footer.about.company}
                 </a>
-                <a href="/about" className="block mt-2 text-sm text-gray-50 hover:underline">
+                <a href="/about" className="block mt-2 text-sm text-gray-50 hover:underline hover:text-brown-400 ">
                   {footer.about.career}
                 </a>
                 
@@ -74,34 +74,34 @@ function Footer() {
 
               <div>
                 <h3 className="text-gray-50 uppercase ">{footer.woodtype.title}</h3>
-                <a href="/daftar" className="block mt-2 text-sm text-gray-50 hover:underline">
+                <a href="/daftar" className="block mt-2 text-sm text-gray-50 hover:underline hover:text-brown-400">
                   {footer.woodtype.wood}
                 </a>
-                <a href="/daftar" className="block mt-2 text-sm text-gray-50 hover:underline">
+                <a href="/daftar" className="block mt-2 text-sm text-gray-50 hover:underline hover:text-brown-400">
                   {footer.woodtype.wood1}
                 </a>
-                <a href="/daftar" className="block mt-2 text-sm text-gray-50 hover:underline">
+                <a href="/daftar" className="block mt-2 text-sm text-gray-50 hover:underline hover:text-brown-400">
                   {footer.woodtype.wood2}
                 </a>
               </div>
 
               <div>
                 <h3 className="text-gray-50 uppercase ">{footer.product.title}</h3>
-                <a href="/daftar" className="block mt-2 text-sm text-gray-50 hover:underline">
+                <a href="/daftar" className="block mt-2 text-sm text-gray-50 hover:underline hover:text-brown-400">
                   {footer.product.kat}
                 </a>
-                <a href="/daftar" className="block mt-2 text-sm text-gray-50 hover:underline">
+                <a href="/daftar" className="block mt-2 text-sm text-gray-50 hover:underline hover:text-brown-400">
                   {footer.product.kat1}
                 </a>
-                <a href="/daftar" className="block mt-2 text-sm text-gray-50 hover:underline">
+                <a href="/daftar" className="block mt-2 text-sm text-gray-50 hover:underline hover:text-brown-400">
                   {footer.product.kat2}
                 </a>
               </div>
 
               <div>
                 <h3 className="text-gray-50 uppercase ">{footer.contact.title}</h3>
-                <span className="block mt-2 text-sm text-gray-50 hover:underline">{footer.contact.no}</span>
-                <span className="block mt-2 text-sm text-gray-50 hover:underline">{footer.contact.email}</span>
+                <span className="block mt-2 text-sm text-gray-50 hover:underline hover:text-brown-400">{footer.contact.no}</span>
+                <span className="block mt-2 text-sm text-gray-50 hover:underline hover:text-brown-400">{footer.contact.email}</span>
               </div>
             </div>
           </div>
