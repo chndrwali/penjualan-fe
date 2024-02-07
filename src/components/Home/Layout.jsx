@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import Header from "./header/Header";
-import Footer from "../LandingPage/footer/Footer";
+import Footer from "./footer/Footer";
 import SkipToContent from "../LandingPage/SkipToContent";
 
 function Layout({ children }) {
