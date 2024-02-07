@@ -8,7 +8,7 @@ const about = {
   const testimoniData = [
     {
       photo: '/img/yanaumar.webp',
-      quote: 'Mantap!! kualitas kayu nya bagus, owner nya ramah, mengerti apa yang client butuhkan. next order lagi di Rukun Perkasa',
+      quote: 'Pesan saya untuk Rukun Perkasa: pertahankan kualitas kayu yang luar biasa dan pelayanan yang prima! Saya sudah menggunakan kayu dari Rukun Perkasa berkali-kali dan tidak pernah kecewa. Sangat direkomendasikan untuk semua kebutuhan kayu Anda!',
       name: 'Yana Umar',
       position: 'Mantan Dirigen Viking Persib Club'
     },
