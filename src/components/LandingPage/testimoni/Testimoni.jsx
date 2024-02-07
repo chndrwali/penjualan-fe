@@ -37,7 +37,7 @@ const Testimoni = () => {
                   <p className="text-blue-200">{position}</p>
                 </div>
   
-                <p className="mt-4 text-lg leading-relaxed text-white md:text-xl">{quote}</p>
+                <p className="mt-4 text-lg leading-relaxed text-white md:text-xl">{`"`}{quote}{`"`}</p>
   
                 <div className="flex items-center justify-between mt-6 md:justify-start">
                   <button title="left arrow" className="p-2 text-white transition-colors duration-300 border rounded-full rtl:-scale-x-100 hover:bg-blue-400" onClick={prevSlide}>
