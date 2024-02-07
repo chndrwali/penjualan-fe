@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import Layout from "../../components/Home/Layout";
-import ImgCrsl from "../../components/Home/Carousel/ImgCrsl";
+import ImageCarousel from "../../components/Home/Carousel/ImageCarousel";
 
 function MainPage() {
     return (
         <Layout>
-            <ImgCrsl />
+            <ImageCarousel />
         </Layout>
     )
 }

@@ -1,99 +1,71 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaGoogle } from 'react-icons/fa';
+import { FaUser, FaLock } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
-const SignupPage = () => {
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSignup = () => {
-    // Logika signup di sini
-    console.log(`Sign up with Full Name: ${fullName}, Email: ${email}, Password: ${password}`);
+const SignUpPage = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.5 } },
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-brown to-coffee">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="bg-white p-8 rounded-lg shadow-md w-full max-w-md"
-      >
-        <div className="flex items-center justify-center mb-6">
-          {/* Logo */}
-          <img
-            src="/logo/android-chrome-512x512.png"
-            alt="Logo"
-            className="h-12 w-12 mr-2"
-          />
-          <h2 className="text-2xl font-bold text-brown-800">Sign Up</h2>
-        </div>
-        <div className="mb-4">
-          <label className="block text-brown-600 text-sm font-semibold mb-2" htmlFor="fullName">
-            Full Name:
-          </label>
-          <input
-            className="w-full px-4 py-2 rounded border focus:outline-none focus:border-brown-500"
-            type="text"
-            id="fullName"
-            name="fullName"
-            placeholder="Enter your full name"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-brown-600 text-sm font-semibold mb-2" htmlFor="email">
-            Email:
-          </label>
-          <input
-            className="w-full px-4 py-2 rounded border focus:outline-none focus:border-brown-500"
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="mb-6">
-          <label className="block text-brown-600 text-sm font-semibold mb-2" htmlFor="password">
-            Password:
-          </label>
-          <input
-            className="w-full px-4 py-2 rounded border focus:outline-none focus:border-brown-500"
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button
-          onClick={handleSignup}
-          className="w-full bg-brown-500 text-white py-2 rounded hover:bg-brown-600 transition duration-300 ease-in-out"
-        >
-          Sign Up
-        </button>
-        {/* Google Sign Up */}
-        <button
-          onClick={() => console.log('Sign up with Google')}
-          className="w-full mt-4 bg-blue-600 text-white py-2 rounded flex items-center justify-center hover:bg-blue-700 transition duration-300 ease-in-out"
-        >
-          <FaGoogle className="mr-2" />
-          Sign Up with Google
-        </button>
-        <p className="mt-4 text-sm text-brown-600">
-          Already have an account? <a href="#" className="text-brown-800">Log in here</a>.
-        </p>
+    <motion.section
+      className="bg-white dark:bg-gray-900"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
+        <form className="w-full max-w-md">
+          <div className="flex justify-center mx-auto">
+            <img className="w-auto h-7 sm:h-8" src="https://merakiui.com/images/logo.svg" alt="" />
+          </div>
+          
+          <div className="flex items-center justify-center mt-6">
+            <Link to="/signin" className="w-1/2 pb-4 font-medium text-center text-gray-500 capitalize border-b dark:border-gray-400 dark:text-gray-300">
+              sign in
+            </Link>
+            <Link to="/signup" className="w-1/2 pb-4 font-medium text-center text-gray-800 capitalize border-b-2 border-blue-500 dark:border-blue-400 dark:text-white">
+              sign up
+            </Link>
+          </div>
 
-        
-      </motion.div>
-    </div>
+          <div className="relative flex items-center mt-8">
+            <span className="absolute left-3 top-1">
+              <FaUser className="w-6 h-6 text-gray-300 dark:text-gray-500" />
+            </span>
+            <input type="text" className="block w-full py-3 pl-10 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Username" />
+          </div>
+
+          <div className="relative flex items-center mt-4">
+            <span className="absolute left-3 top-1">
+              <FaLock className="w-6 h-6 text-gray-300 dark:text-gray-500" />
+            </span>
+            <input type="password" className="block w-full py-3 pl-10 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password" />
+          </div>
+
+          <div className="relative flex items-center mt-4">
+            <span className="absolute left-3 top-1">
+              <FaLock className="w-6 h-6 text-gray-300 dark:text-gray-500" />
+            </span>
+            <input type="password" className="block w-full py-3 pl-10 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Confirm Password" />
+          </div>
+
+          <div className="mt-6">
+            <motion.button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+              Sign Up
+            </motion.button>
+
+            <div className="mt-6 text-center ">
+              <Link to="/signin" className="text-sm text-blue-500 hover:underline dark:text-blue-400">
+                Already have an account?
+              </Link>
+            </div>
+          </div>
+        </form>
+      </div>
+    </motion.section>
   );
 };
 
-export default SignupPage;
+export default SignUpPage;

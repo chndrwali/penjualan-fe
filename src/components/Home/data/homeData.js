@@ -1,3 +1,10 @@
+const images = [
+    'office-long-1.webp',
+    'office-long-2.webp',
+    'raisa.webp',
+    // tambahkan URL gambar sesuai kebutuhan
+  ];
+
 const footer = {
     copy: '2024 Rukun Perkasa | All rights reserved.',
     viewOnGithub: {
@@ -19,5 +26,5 @@ const footer = {
   };
   
   export {
-    footer
+    footer, images
   };
