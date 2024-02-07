@@ -9,8 +9,8 @@ function Imagine() {
                     <p className="mb-4">{magic.desc}</p>
                 </div>
                 <div className="grid grid-cols-2 gap-4 mt-8">
-                    <img className="w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png" alt="Contoh kusen kayu" />
-                    <img className="mt-4 w-full rounded-lg lg:mt-10" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-1.png" alt="Contoh furniture" />
+                    <img className="w-full rounded-lg" src={magic.image} />
+                    <img className="mt-4 w-full rounded-lg lg:mt-10" src={magic.img} />
                 </div>
             </div>
         </section>

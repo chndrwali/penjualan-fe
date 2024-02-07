@@ -64,25 +64,51 @@ const bisnis = {
 const magic = {
   title: 'Inovasi Tanpa Batas untuk Kusen Kayu dan Furniture',
   desc: 'Rukun Perkasa adalah tim strategis, desainer, dan pengembang. Kami memecahkan masalah dengan inovasi. Cukup kecil untuk memberikan solusi sederhana dan cepat, namun cukup besar untuk memberikan kualitas dan cakupan yang Anda butuhkan dengan kecepatan yang Anda perlukan. Kami berkomitmen untuk menyediakan produk kusen kayu dan furniture berkualitas tinggi yang memenuhi standar industri.',
+  img: '/img/office-long-1.webp',
+  image: '/img/office-long-2.webp'
 }
 
 const footer = {
+    brand:'Rukun Perkasa',
     copy: '2024 Rukun Perkasa | All rights reserved.',
-    viewOnGithub: {
-      title: 'View on Github',
-      url: 'https://github.com/chndrwali/PengelolaSampahMasyarakat',
+    SEO: 'Bergabunglah dengan lebih dari 5.000 orang lainnya dan jangan pernah lewatkan produk kusen baru, furniture, dan lainnya.',
+    about: {
+      title: 'About',
+      company: 'Company',
+      career: 'Career',
     },
-    twitter: {
-      title: 'View On Twitter',
-      url: 'https://twitter.com/chndrwali',
+    woodtype: {
+      title: 'Wood type',
+      wood: 'Jati',
+      wood1: 'Kamper',
+      wood2: 'Meranti',
+    },
+    product: {
+      title: 'Products',
+      kat: 'Kusen Pintu',
+      kat1: 'Kusen Jendela',
+      kat2: 'Furniture'
+    },
+    contact: {
+    title: 'Contact',
+    no: '+62 89652648201',
+    email: 'rukunperkasa@gmail.com',
+    },
+    viewOnWhatsapp: {
+      title: 'Chat on Whatsapp',
+      url: 'https://wa.me/6289652648201',
+    },
+    facebook: {
+      title: 'View On facebook',
+      url: 'https://facebook.com/rukunperkasa',
     },
     linkedin: {
       title: 'View On Linkedin',
-      url: 'https://linkedin.com/in/chndrwali',
+      url: 'https://linkedin.com/in/rukunperkasa',
     },
     instagram: {
       title: 'View On Instagram',
-      url: 'https://instagram.com/chndrwali',
+      url: 'https://instagram.com/rukunperkasa',
     },
   };
   

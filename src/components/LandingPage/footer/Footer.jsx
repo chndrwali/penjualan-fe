@@ -1,4 +1,4 @@
-import { FaGithub, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { FaWhatsapp, FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { footer } from '../data/landingpageData';
 
 function Footer() {
@@ -10,30 +10,30 @@ function Footer() {
             <div className="px-6">
               <a href="/" className="flex items-center">
                 <img className="w-auto h-16 mr-1" src="/logo/android-chrome-512x512.png" alt="" />
-                <span className="text-xl font-semibold whitespace-nowrap text-brown-800">Rukun Perkasa</span>
+                <span className="text-xl font-semibold whitespace-nowrap text-brown-400">{footer.brand}</span>
               </a>
 
-              <p className="max-w-sm mt-2 text-gray-50">Join 31,000+ other and never miss out on new tips, tutorials, and more.</p>
+              <p className="max-w-sm mt-2 text-gray-50">{footer.SEO}</p>
 
               <div className="flex mt-6 -mx-2">
-                <a href={footer.viewOnGithub.url} 
+                <a href={footer.viewOnWhatsapp.url} 
                 target="_blank" 
                 rel="noreferrer" 
                 className="mx-2 text-gray-50 hover:text-blue-600 hover:underline" 
-                title={footer.viewOnGithub.title} 
-                aria-label={footer.viewOnGithub.title}>
-                  <FaGithub />
+                title={footer.viewOnWhatsapp.title} 
+                aria-label={footer.viewOnWhatsapp.title}>
+                  <FaWhatsapp />
                 </a>
 
                 <a
-                href={footer.twitter.url}
+                href={footer.facebook.url}
                 target="_blank"
                 rel="noreferrer"
                 className="mx-2 text-gray-50 hover:text-blue-600 hover:underline"
-                title={footer.twitter.title}
-               aria-label={footer.twitter.title}
+                title={footer.facebook.title}
+               aria-label={footer.facebook.title}
                 >
-              <FaTwitter />
+              <FaFacebook />
                 </a>
                 <a
             href={footer.linkedin.url}
@@ -62,48 +62,46 @@ function Footer() {
           <div className="mt-6 lg:mt-0 lg:flex-1">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               <div>
-                <h3 className="text-gray-50 uppercase ">About</h3>
-                <a href="#" className="block mt-2 text-sm text-gray-50 hover:underline">
-                  Company
+                <h3 className="text-gray-50 uppercase ">{footer.about.title}</h3>
+                <a href="/about" className="block mt-2 text-sm text-gray-50 hover:underline">
+                  {footer.about.company}
                 </a>
-                <a href="#" className="block mt-2 text-sm text-gray-50 hover:underline">
-                  community
+                <a href="/about" className="block mt-2 text-sm text-gray-50 hover:underline">
+                  {footer.about.career}
                 </a>
-                <a href="#" className="block mt-2 text-sm text-gray-50 hover:underline">
-                  Careers
+                
+              </div>
+
+              <div>
+                <h3 className="text-gray-50 uppercase ">{footer.woodtype.title}</h3>
+                <a href="/daftar" className="block mt-2 text-sm text-gray-50 hover:underline">
+                  {footer.woodtype.wood}
+                </a>
+                <a href="/daftar" className="block mt-2 text-sm text-gray-50 hover:underline">
+                  {footer.woodtype.wood1}
+                </a>
+                <a href="/daftar" className="block mt-2 text-sm text-gray-50 hover:underline">
+                  {footer.woodtype.wood2}
                 </a>
               </div>
 
               <div>
-                <h3 className="text-gray-50 uppercase ">Blog</h3>
-                <a href="#" className="block mt-2 text-sm text-gray-50 hover:underline">
-                  Tec
+                <h3 className="text-gray-50 uppercase ">{footer.product.title}</h3>
+                <a href="/daftar" className="block mt-2 text-sm text-gray-50 hover:underline">
+                  {footer.product.kat}
                 </a>
-                <a href="#" className="block mt-2 text-sm text-gray-50 hover:underline">
-                  Music
+                <a href="/daftar" className="block mt-2 text-sm text-gray-50 hover:underline">
+                  {footer.product.kat1}
                 </a>
-                <a href="#" className="block mt-2 text-sm text-gray-50 hover:underline">
-                  Videos
-                </a>
-              </div>
-
-              <div>
-                <h3 className="text-gray-50 uppercase ">Products</h3>
-                <a href="#" className="block mt-2 text-sm text-gray-50 hover:underline">
-                  Mega cloud
-                </a>
-                <a href="#" className="block mt-2 text-sm text-gray-50 hover:underline">
-                  Aperion UI
-                </a>
-                <a href="#" className="block mt-2 text-sm text-gray-50 hover:underline">
-                  Meraki UI
+                <a href="/daftar" className="block mt-2 text-sm text-gray-50 hover:underline">
+                  {footer.product.kat2}
                 </a>
               </div>
 
               <div>
-                <h3 className="text-gray-50 uppercase ">Contact</h3>
-                <span className="block mt-2 text-sm text-gray-50 hover:underline">+1 526 654 8965</span>
-                <span className="block mt-2 text-sm text-gray-50 hover:underline">example@email.com</span>
+                <h3 className="text-gray-50 uppercase ">{footer.contact.title}</h3>
+                <span className="block mt-2 text-sm text-gray-50 hover:underline">{footer.contact.no}</span>
+                <span className="block mt-2 text-sm text-gray-50 hover:underline">{footer.contact.email}</span>
               </div>
             </div>
           </div>
