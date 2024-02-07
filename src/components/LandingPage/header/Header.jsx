@@ -11,10 +11,10 @@ function Header() {
   };
 
   return (
-    <header className="bg-white absolute top-0 left-0 w-full flex items-center z-10 justify-center">
+    <header className="bg-white absolute shadow top-0 left-0 w-full flex items-center z-10 justify-center">
       <div className="container md:mx-12 lg:mx-20">
         <div className="flex items-center justify-between relative">
-        <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+        <Link to="/" className="flex items-center space-x-3">
           <img src="./logo/android-chrome-512x512.png" className="h-8" alt="Rukun Perkasa Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap text-brown-800">Rukun Perkasa</span>
         </Link>

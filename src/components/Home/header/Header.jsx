@@ -24,17 +24,18 @@ const Header = () => {
 
     // Dummy user data
     const user = {
-        name: 'Khatab wedaa',
-        email: 'khatab@example.com',
+        name: 'candra',
+        email: 'candra@example.com',
     };
 
     return (
         <>
             <nav className="relative bg-white shadow dark:bg-gray-800">
                 <div className="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
-                    <div className="flex items-center justify-between">
-                        <Link to="/">
-                            <img className="w-auto h-6 sm:h-7" src="https://merakiui.com/images/full-logo.svg" alt="" />
+                    <div className="flex items-center justify-between w-full md:w-auto">
+                        <Link to="/" className="flex items-center space-x-3">
+                            <img className="w-auto h-8 sm:h-7" src="/logo/android-chrome-512x512.png" alt="logo Rukun Perkasa" />
+                            <span className="self-center text-2xl font-semibold whitespace-nowrap text-brown-800">Rukun Perkasa</span>
                         </Link>
                         <div className="flex lg:hidden">
                             <button onClick={() => { toggleMenu(); closeProfileDropdown(); }} type="button" className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400" aria-label="toggle menu">
@@ -55,23 +56,21 @@ const Header = () => {
                         <div className="flex flex-col md:flex-row md:mx-6">
                             <Link to="/" onClick={closeMenu} className="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">Home</Link>
                             <Link to="/shop" onClick={closeMenu} className="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">Shop</Link>
-                            <Link to="/contact" onClick={closeMenu} className="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">Contact</Link>
                             <Link to="/about" onClick={closeMenu} className="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">About</Link>
                         </div>
 
-                        <div className="flex items-center mt-4 md:mt-0">
-                            <Link to='/cart' className="mx-4 text-gray-600 transition-colors duration-300 transform lg:block dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-400 focus:text-gray-700 dark:focus:text-gray-400 focus:outline-none" aria-label="show notifications">
+                        <div className="flex items-center mt-4 md:mt-0 ml-auto md:ml-0"> {/* Added ml-auto for margin */}
+                            <Link to='/cart' className="my-2 mx-4 text-gray-600 transition-colors duration-300 transform lg:block dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-400 focus:text-gray-700 dark:focus:text-gray-400 focus:outline-none" aria-label="show notifications">
                                 <FiShoppingCart className="w-6 h-6" />
                             </Link>
 
                             <div className="relative">
                                 <button onClick={toggleProfileDropdown} type="button" className="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
                                     <FiUser className="w-6 h-6" />
-                                    <span className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">{user.name}</span>
+                                    <span className="mx-2 text-gray-700 dark:text-gray-200">{user.name}</span>
                                 </button>
                                 {isProfileOpen && (
                                     <div className="origin-top-right absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
-                                        <div className="block px-4 py-2 text-sm text-gray-700">{user.name}</div>
                                         <div className="block px-4 py-2 text-sm text-gray-700">{user.email}</div>
                                         <Link to="/transactions" onClick={closeMenu} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Riwayat Transaksi</Link>
                                         <Link to="/settings" onClick={closeMenu} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Setelan</Link>
