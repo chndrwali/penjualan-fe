@@ -4,6 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { signupReq } from '../../../utils/api';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import logo from '/public/logo/android-chrome-512x512.png';
+import imglogo from '/public/img/signup.webp';
+
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -34,7 +37,7 @@ const SignupPage = () => {
 
       // Check if email is admin@gmail.com
       if (email === 'admin@gmail.com') {
-        setError('Signup with email admin@gmail.com is not allowed');
+        setError('Sign up with email admin@gmail.com is not allowed');
         return;
       }
 
@@ -69,8 +72,8 @@ const SignupPage = () => {
       initial="hidden"
       animate="visible"
     >
-      <div className="lg:w-1/2 bg-cover bg-center" style={{backgroundImage: "url('https://images.unsplash.com/photo-1606660265514-358ebbadc80d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1575&q=80')"}}>
-        <div className="h-full bg-black bg-opacity-50"></div>
+      <div className="lg:w-1/2 bg-cover bg-center" style={{ backgroundImage: `url(${imglogo})` }}>
+        <div className="h-full "></div>
       </div>
       <div className="w-full lg:w-1/2 px-6 py-8 md:px-8">
         <motion.form 
@@ -80,21 +83,21 @@ const SignupPage = () => {
         initial="hidden"
         animate="visible">
           <div className="flex justify-center">
-            <img className="w-auto h-7 sm:h-8" src="https://merakiui.com/images/logo.svg" alt="" />
+            <img className="w-auto h-7 sm:h-8" src={logo} alt="" />
           </div>
 
-          <p className="mt-3 text-xl text-center text-gray-600 dark:text-gray-200">
-            Sign Up
+          <p className="mt-3 text-xl text-center text-gray-600 ">
+            Daftar
           </p>
           
           {/* Form inputs */}
           
           <div className="mt-4">
-            <label className="block mb-2 text-sm font-medium text-gray-600" >Username</label>
+            <label className="block mb-2 text-sm font-medium text-gray-600" >Nama Lengkap</label>
             <input 
               type="text" 
               className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg" 
-              placeholder="Username"
+              placeholder="Nama Lengkap"
               value={username}
               onChange={(e) => setUsername(e.target.value)} 
             />
@@ -105,10 +108,11 @@ const SignupPage = () => {
             <input 
               type="email" 
               className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg" 
-              placeholder="Email"
+              placeholder="Alamat Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)} 
             />
+            <label className="block mb-2 text-xs font-medium text-gray-500" >Gunakan alamat email aktif Anda</label>
           </div>
 
           <div className="mt-4">
@@ -120,31 +124,34 @@ const SignupPage = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)} 
             />
+             <label className="block mb-2 text-xs font-medium text-gray-500" >Gunakan minimal 8 karakter dengan kombinasi huruf dan angka</label>
           </div>
 
           <div className="mt-4">
-            <label className="block mb-2 text-sm font-medium text-gray-600" >Confirm Password</label>
+            <label className="block mb-2 text-sm font-medium text-gray-600" >Ulangi Password</label>
             <input 
               type="password" 
               className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg" 
-              placeholder="Confirm Password"
+              placeholder="Ulangi Password"
               value={cPassword}
               onChange={(e) => setcPassword(e.target.value)} 
             />
+             <label className="block mb-2 text-xs font-medium text-gray-500" >Gunakan minimal 8 karakter dengan kombinasi huruf dan angka</label>
           </div>
 
           <div className="mt-6">
             <motion.button 
               type="submit" 
-              className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
+              className="w-full py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition duration-300"
               onKeyPress={handleKeyPress}
             >
-              Sign Up
+              Daftar
             </motion.button>
 
             <div className="mt-6 text-center ">
-              <Link to="/masuk" className="text-sm text-blue-500 hover:underline dark:text-blue-400">
-                Already have an account?
+              <p className='text-sm text-gray-600'> Sudah punya akun? </p>
+              <Link to="/masuk" className="text-sm text-brown-500 underline hover:underline hover:text-blue-500 ">
+                Masuk sekarang
               </Link>
             </div>
           </div>
