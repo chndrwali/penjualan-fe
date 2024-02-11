@@ -1,64 +1,73 @@
-import { useState } from 'react';
-import { images } from '../data/homeData';
+import { useState } from "react";
+import { images } from "../data/homeData";
 
-function ImageCarousel () {
-  const [currentIndex, setCurrentIndex] = useState(0);
+const ImageCarousel = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const nextImage = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  const handlePrev = () => {
+    setActiveIndex((prevIndex) => prevIndex - 1);
   };
 
-  const prevImage = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
+  const handleNext = () => {
+    setActiveIndex((prevIndex) => prevIndex + 1);
   };
 
   return (
-    <div className="grid grid-cols-3 gap-4">
-      <div className="col-span-1 flex flex-col justify-between">
-        <div className="mb-4">
-          <img
-            src={images[(currentIndex - 1 + images.length) % images.length]}
-            alt="Previous"
-            className="w-full h-auto"
-          />
-        </div>
-        <div>
-          <img
-            src={images[(currentIndex + 1) % images.length]}
-            alt="Next"
-            className="w-full h-auto"
-          />
-        </div>
+    <div className="relative flex flex-col justify-center items-center">
+      <div className="flex overflow-hidden w-full h-full">
+        {images.map((image, index) => (
+          <div
+            key={image}
+            className={`w-full h-full flex-shrink-0 ${
+              index === activeIndex ? "block" : "hidden"
+            }`}
+          >
+            <img src={image} alt="" className="object-cover w-full h-full" />
+          </div>
+        ))}
       </div>
-      <div className="col-span-1">
-        <img src={images[currentIndex]} alt="Main" className="w-full h-auto" />
+      <div className="flex absolute top-0 left-0 w-full h-full justify-between items-center">
+        <button
+          className="bg-gray-200 p-2 rounded-full hover:bg-gray-300"
+          onClick={handlePrev}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
+        <button
+          className="bg-gray-200 p-2 rounded-full hover:bg-gray-300"
+          onClick={handleNext}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
       </div>
-      <div className="col-span-1 flex flex-col justify-between">
-        <div className="mt-4">
-          <img
-            src={images[(currentIndex + 2) % images.length]}
-            alt="Next"
-            className="w-full h-auto"
-          />
-        </div>
-        <div>
-          <img
-            src={images[(currentIndex - 2 + images.length) % images.length]}
-            alt="Previous"
-            className="w-full h-auto"
-          />
-        </div>
-      </div>
-      <button onClick={prevImage} className="col-span-1 text-center py-2 bg-gray-300">
-        Previous
-      </button>
-      <button onClick={nextImage} className="col-span-1 text-center py-2 bg-gray-300">
-        Next
-      </button>
     </div>
   );
-}
+};
 
 export default ImageCarousel;
