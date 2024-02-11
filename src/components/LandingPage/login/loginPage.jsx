@@ -62,7 +62,7 @@ const LoginPage = () => {
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-      handleLoginAdmin(e);
+      handleLogin(e);
     }
   };
 
