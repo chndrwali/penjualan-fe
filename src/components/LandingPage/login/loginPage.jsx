@@ -1,8 +1,9 @@
-/* eslint-disable no-unused-vars */
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { loginReq } from '../../../utils/api';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -18,18 +19,18 @@ const LoginPage = () => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
 
   const handleLoginAdmin = async () => {
     try {
       const response = await loginReq({ email: username, password });
       if (response.token) {
-        navigate('/dashboard'); // Redirect to dashboard
+        toast.success('Login successful');
+        navigate('/dashboard');
       } else {
-        setError('Failed to login. Please check your credentials.');
+        toast.error('Failed to login. Please check your credentials.');
       }
     } catch (error) {
-      setError('Failed to login. Please try again.');
+      toast.error('Failed to login. Please try again.');
     }
   };
 
@@ -37,12 +38,13 @@ const LoginPage = () => {
     try {
       const response = await loginReq({ email: username, password });
       if (response.token) {
+        toast.success('Login successful');
         navigate('/main');
       } else {
-        setError('Failed to login. Please check your credentials.');
+        toast.error('Failed to login. Please check your credentials.');
       }
     } catch (error) {
-      setError('Failed to login. Please try again.');
+      toast.error('Failed to login. Please try again.');
     }
   };
 
@@ -58,15 +60,15 @@ const LoginPage = () => {
 
   return (
     <motion.div 
-      className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl"
+      className="flex flex-col lg:flex-row w-full max-w-screen-xl mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
-      <div className="hidden bg-cover lg:block lg:w-1/2" style={{backgroundImage: "url('https://images.unsplash.com/photo-1606660265514-358ebbadc80d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1575&q=80')"}}></div>
-
+      <div className="hidden lg:block lg:w-1/2 bg-cover bg-center" style={{backgroundImage: "url('https://images.unsplash.com/photo-1606660265514-358ebbadc80d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1575&q=80')"}}></div>
+      
       <motion.div
-        className="w-full px-6 py-8 md:px-8 lg:w-1/2"
+        className="w-full lg:w-1/2 px-6 py-8 md:px-8"
         variants={formVariants}
         initial="hidden"
         animate="visible"
