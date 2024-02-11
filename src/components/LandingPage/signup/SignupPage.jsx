@@ -56,6 +56,12 @@ const SignupPage = () => {
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSubmit(e);
+    }
+  };
+
   return (
     <motion.div
       className="flex flex-col lg:flex-row w-full max-w-screen-xl mx-auto overflow-hidden bg-white rounded-lg shadow-lg"
@@ -131,6 +137,7 @@ const SignupPage = () => {
             <motion.button 
               type="submit" 
               className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
+              onKeyPress={handleKeyPress}
             >
               Sign Up
             </motion.button>
