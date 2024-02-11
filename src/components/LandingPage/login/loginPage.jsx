@@ -62,15 +62,17 @@ const LoginPage = () => {
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-      handleLogin(e);
+      handleLoginAdmin(e);
     }
   };
 
   return (
+    <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
     <motion.div className="flex flex-col lg:flex-row w-full max-w-screen-xl mx-auto overflow-hidden bg-white rounded-lg shadow-lg lg:max-w-4xl" variants={containerVariants} initial="hidden" animate="visible">
-      <div className="hidden lg:block lg:w-1/2 bg-cover bg-center" style={{ backgroundImage: `url(${imglogin})` }}></div>
+    <div className="hidden lg:block lg:w-1/2 bg-cover bg-center" style={{ backgroundImage: `url(${imglogin})` }}></div>
 
-      <motion.div className="w-full lg:w-1/2 px-6 py-8 md:px-8" variants={formVariants} initial="hidden" animate="visible">
+    <motion.div className="w-full lg:w-1/2 px-6 py-8 md:px-8" variants={formVariants} initial="hidden" animate="visible">
+      
         <div className="flex justify-center mx-auto">
           <img className="w-auto h-7 sm:h-8" src={logo} alt="" />
         </div>
@@ -83,7 +85,7 @@ const LoginPage = () => {
           </label>
           <input
             id="LoggingEmailAddress"
-            className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg   focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
+            className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
             type="email"
             placeholder="Email"
             value={username}
@@ -100,7 +102,7 @@ const LoginPage = () => {
 
           <input
             id="loggingPassword"
-            className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg   focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+            className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
             type="password"
             placeholder="Password"
             value={password}
@@ -114,7 +116,7 @@ const LoginPage = () => {
 
         <div className="mt-6">
           <button
-            onClick={handleLogin}
+            type="submit"
             className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
             onKeyPress={handleKeyPress}
           >
@@ -132,6 +134,7 @@ const LoginPage = () => {
         </div>
       </motion.div>
     </motion.div>
+  </form>
   );
 };
 
