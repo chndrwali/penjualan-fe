@@ -2,9 +2,7 @@ import Layout from "../../components/Dashboard/Layout";
 
 function AdminPage() {
     return (
-        <Layout>
-
-        </Layout>
+        <Layout></Layout>
     )
 }
 
