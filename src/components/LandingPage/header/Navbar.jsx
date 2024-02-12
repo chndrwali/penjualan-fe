@@ -1,7 +1,13 @@
 /* eslint-disable react/prop-types */
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 function Navbar({ isHamburgerOpen }) {
+  const location = useLocation();
+
+  const isSignInOrSignUpPage = () => {
+    return location.pathname === '/masuk' || location.pathname === '/daftar';
+  };
+
   return (
     <nav
       id="nav-menu"
@@ -20,30 +26,35 @@ function Navbar({ isHamburgerOpen }) {
         <NavLink
           to="/about"
           className="nav-link mb-3 lg:mb-0"
-          activeclassname="nav-link active"
+          activeclassname="nav-link active" 
           title="Tombol menu tentang kami"
           aria-label="Tombol menu tentang kami"
         >
           Tentang Kami
         </NavLink>
-        <NavLink
-          to="/masuk"
-          className="btn-link"
-          activeclassname="btn-link active"
-          title="Tombol menu masuk"
-          aria-label="Tombol menu masuk"
-        >
-          Masuk
-        </NavLink>
-        <NavLink
-          to="/daftar"
-          className="btn-link"
-          activeclassname="btn-link active"
-          title="Tombol menu daftar"
-          aria-label="Tombol menu daftar"
-        >
-          Daftar
-        </NavLink>
+       
+        {!isSignInOrSignUpPage() && ( 
+          <>
+            <NavLink
+              to="/masuk"
+              className="btn-link"
+              activeclassname="btn-link active" 
+              title="Tombol menu masuk"
+              aria-label="Tombol menu masuk"
+            >
+              Masuk
+            </NavLink>
+            <NavLink
+              to="/daftar"
+              className="btn-link"
+              activeclassname="btn-link active" 
+              title="Tombol menu daftar"
+              aria-label="Tombol menu daftar"
+            >
+              Daftar
+            </NavLink>
+          </>
+        )}
       </div>
     </nav>
   );

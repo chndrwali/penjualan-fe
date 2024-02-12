@@ -4,8 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { signupReq } from '../../../utils/api';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import logo from '/public/logo/android-chrome-512x512.png';
-import imglogo from '/public/img/signup.webp';
+import { image } from '../data/imgData';
 
 
 const SignupPage = () => {
@@ -72,7 +71,7 @@ const SignupPage = () => {
       initial="hidden"
       animate="visible"
     >
-      <div className="lg:w-1/2 bg-cover bg-center" style={{ backgroundImage: `url(${imglogo})` }}>
+      <div className="lg:w-1/2 bg-cover bg-center" style={{ backgroundImage: `url(${image.signup})` }}>
         <div className="h-full "></div>
       </div>
       <div className="w-full lg:w-1/2 px-6 py-8 md:px-8">
@@ -83,7 +82,7 @@ const SignupPage = () => {
         initial="hidden"
         animate="visible">
           <div className="flex justify-center">
-            <img className="w-auto h-7 sm:h-8" src={logo} alt="" />
+            <img className="w-auto h-7 sm:h-8" src={image.logo} alt="" />
           </div>
 
           <p className="mt-3 text-xl text-center text-gray-600 ">

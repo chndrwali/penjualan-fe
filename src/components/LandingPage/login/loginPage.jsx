@@ -4,8 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { loginReq } from '../../../utils/api';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import logo from '/public/logo/android-chrome-512x512.png';
-import imglogin from '/public/img/login.webp';
+import { image } from '../data/imgData';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -69,12 +68,12 @@ const LoginPage = () => {
   return (
     <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
     <motion.div className="flex flex-col lg:flex-row w-full max-w-screen-xl mx-auto overflow-hidden bg-white rounded-lg shadow-lg lg:max-w-4xl" variants={containerVariants} initial="hidden" animate="visible">
-    <div className="hidden lg:block lg:w-1/2 bg-cover bg-center" style={{ backgroundImage: `url(${imglogin})` }}></div>
+    <div className="hidden lg:block lg:w-1/2 bg-cover bg-center" style={{ backgroundImage: `url(${image.login})` }}></div>
 
     <motion.div className="w-full lg:w-1/2 px-6 py-8 md:px-8" variants={formVariants} initial="hidden" animate="visible">
       
         <div className="flex justify-center mx-auto">
-          <img className="w-auto h-7 sm:h-8" src={logo} alt="" />
+          <img className="w-auto h-7 sm:h-8" src={image.logo} alt="" />
         </div>
 
         <p className="mt-3 text-xl text-center text-gray-600">Masuk</p>
