@@ -70,7 +70,7 @@ const magic = {
 
 const footer = {
     brand:'Rukun Perkasa',
-    copy: '2024 Rukun Perkasa | All rights reserved.',
+    copy: 'Rukun Perkasa | All rights reserved.',
     SEO: 'Bergabunglah dengan lebih dari 5.000 orang lainnya dan jangan pernah lewatkan produk kusen baru, furniture, dan lainnya.',
     about: {
       title: 'About',

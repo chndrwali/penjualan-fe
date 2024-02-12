@@ -26,7 +26,7 @@ const LoginPage = () => {
       const response = await loginReq({ email: username, password });
       if (response.token) {
         toast.success('Login successful');
-        navigate('/dashboard');
+        navigate('/admin');
       } else {
         toast.error('Failed to login. Please check your credentials.');
       }

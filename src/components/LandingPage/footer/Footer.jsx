@@ -1,5 +1,6 @@
 import { FaWhatsapp, FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { footer } from '../data/landingpageData';
+import moment from 'moment';
 
 function Footer() {
   return (
@@ -110,7 +111,7 @@ function Footer() {
         <hr className="h-px my-6 bg-gray-200 border-none dark:bg-gray-700" />
 
         <div>
-          <p className="text-center text-gray-50">&copy; {footer.copy}</p>
+          <p className="text-center text-gray-50">&copy; {moment().format("YYYY")} {footer.copy}</p>
         </div>
       </div>
     </footer>
