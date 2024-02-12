@@ -10,7 +10,7 @@ function Footer() {
             <div className="px-6">
               <a href="/" className="flex items-center">
                 <img className="w-auto h-16 mr-1" src="/logo/android-chrome-512x512.png" alt="" />
-                <span className="text-xl font-semibold whitespace-nowrap text-brown-400">{footer.brand}</span>
+                <span className="text-xl font-mono font-semibold whitespace-nowrap text-brown-400">{footer.brand}</span>
               </a>
 
               <p className="max-w-sm mt-2 text-gray-50">{footer.SEO}</p>

@@ -15,9 +15,9 @@ function HeroLeft({ hero }) {
       initial="hidden"
       animate="visible"
     >
-      <h1 className="font-bold text-4xl mb-4 lg:text-5xl">
+      <h1 className="font-bold font-mono text-4xl mb-4 lg:text-5xl">
         <span
-          className="bg-gradient-to-tr from-brown-500 via-coffee-400 to-earth-500 bg-clip-text text-transparent"
+          className="bg-gradient-to-r from-brown-500 via-coffee-400 to-earth-500 bg-clip-text text-transparent"
           style={{ WebkitTextFillColor: 'transparent' }}
         >
           Kusen kayu kami menjamin ketahanan luar biasa
@@ -34,7 +34,7 @@ function HeroLeft({ hero }) {
       </motion.p>
       <Link
         to="/masuk"
-        className="text-white text-xl font-medium bg-earth-500 rounded px-7 py-3 hover:shadow-xl hover:opacity-80 transition duration-300 ease-out"
+        className="text-white after:content-['_↗'] text-xl font-medium bg-earth-500 rounded px-7 py-3 hover:shadow-xl hover:opacity-80 transition duration-300 ease-out"
         title="Tombol masuk"
         aria-label="Tombol masuk"
       >

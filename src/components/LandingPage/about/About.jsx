@@ -46,7 +46,7 @@ function About() {
           animate="visible"
         >
           <motion.h1
-            className="font-bold text-black text-4xl mb-3 lg:mb-5 lg:text-6xl cursor-pointer"
+            className="font-bold text-black underline text-4xl mb-3 lg:mb-5 lg:text-6xl cursor-pointer"
             variants={titleVariants}
             initial="hidden"
             animate="visible"
@@ -81,7 +81,7 @@ function About() {
             initial="hidden"
             animate="visible"
           >
-            {'"'} Kami percaya bahwa kualitas layanan adalah kunci keberhasilan kami. Dengan pendekatan yang fokus pada kebutuhan pelanggan, kami selalu berupaya untuk memberikan pengalaman yang memuaskan kepada setiap pelanggan kami. Kami berusaha untuk terus meningkatkan layanan kami melalui pengembangan proyek-proyek penting, pengurangan kerja berulang, dan penerapan perubahan yang efektif untuk memastikan kepuasan pelanggan yang berkelanjutan. {'"'}
+            {'"'} Kami percaya bahwa <a className='underline decoration-red-500'>kualitas layanan</a>  adalah kunci keberhasilan kami. Dengan pendekatan yang fokus pada <a className='underline decoration-red-500'>kebutuhan pelanggan</a>, kami selalu berupaya untuk memberikan <a className='underline decoration-red-500'>pengalaman yang memuaskan</a> kepada setiap pelanggan kami. Kami berusaha untuk terus meningkatkan layanan kami melalui pengembangan proyek-proyek penting, pengurangan kerja berulang, dan penerapan perubahan yang efektif untuk memastikan kepuasan pelanggan yang berkelanjutan. {'"'}
           </motion.p>
         </Blockquote>
       </div>

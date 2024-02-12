@@ -16,7 +16,7 @@ function Header() {
         <div className="flex items-center justify-between relative">
         <Link to="/" className="flex items-center space-x-3">
           <img src="./logo/android-chrome-512x512.png" className="h-8" alt="Rukun Perkasa Logo" />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap text-brown-800">Rukun Perkasa</span>
+          <span className="font-mono self-center text-2xl font-semibold whitespace-nowrap text-brown-800">Rukun Perkasa</span>
         </Link>
           <div className="flex items-center justify-center px-4">
             <HamburgerButton
