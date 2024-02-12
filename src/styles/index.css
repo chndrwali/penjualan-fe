@@ -24,11 +24,11 @@ body {
 }
 
 .btn-link {
-  @apply flex items-center font-semibold text-base text-white py-2 mx-6 px-4 bg-gradient-to-r from-brown-500 via-coffee-500 to-earth-500  rounded min-h-[44px] min-w-[44px] hover:brightness-110 hover:translate-y-[1px] lg:mx-4 hover:shadow-xl hover:opacity-80 transition duration-300 ease-out;
+  @apply flex items-center font-semibold text-base text-white py-2 mx-6 px-4 bg-brown-500  rounded min-h-[44px] min-w-[44px] hover:brightness-110 hover:translate-y-[1px] lg:mx-4 hover:shadow-xl hover:opacity-80 transition duration-300 ease-out;
 }
 
-.btn-link.active {
-  @apply shadow-xl opacity-80 border-yellow-400 border-b-[4px];
+.btn-link2 {
+  @apply flex items-center font-semibold border border-brown-500 text-base text-brown-500 py-2 mx-6 px-4 bg-white rounded min-h-[44px] min-w-[44px] hover:text-gray-100 hover:bg-brown-500 hover:brightness-110 hover:translate-y-[1px] lg:mx-4 hover:shadow-xl hover:opacity-80 transition duration-300 ease-out;
 }
 
 @layer components {

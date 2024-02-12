@@ -67,7 +67,7 @@ const LoginPage = () => {
 
   return (
     <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
-    <motion.div className="flex flex-col lg:flex-row w-full max-w-screen-xl mx-auto overflow-hidden bg-white rounded-lg shadow-lg lg:max-w-4xl" variants={containerVariants} initial="hidden" animate="visible">
+    <motion.div className="flex flex-col lg:flex-row w-full max-w-screen-xl mb-4 border border-brown-500 mx-auto overflow-hidden bg-white rounded-lg shadow-lg lg:max-w-4xl" variants={containerVariants} initial="hidden" animate="visible">
     <div className="hidden lg:block lg:w-1/2 bg-cover bg-center" style={{ backgroundImage: `url(${image.login})` }}></div>
 
     <motion.div className="w-full lg:w-1/2 px-6 py-8 md:px-8" variants={formVariants} initial="hidden" animate="visible">

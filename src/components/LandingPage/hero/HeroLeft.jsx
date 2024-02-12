@@ -15,7 +15,7 @@ function HeroLeft({ hero }) {
       initial="hidden"
       animate="visible"
     >
-      <h1 className="font-bold font-mono text-4xl mb-4 lg:text-5xl">
+      <h1 className="font-extrabold font-mono text-4xl mb-4 lg:text-5xl">
         <span
           className="bg-gradient-to-r from-brown-500 via-coffee-400 to-earth-500 bg-clip-text text-transparent"
           style={{ WebkitTextFillColor: 'transparent' }}

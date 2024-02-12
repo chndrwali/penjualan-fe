@@ -66,7 +66,7 @@ const SignupPage = () => {
 
   return (
     <motion.div
-      className="flex flex-col lg:flex-row w-full max-w-screen-xl mx-auto overflow-hidden bg-white rounded-lg shadow-lg"
+      className="flex flex-col lg:flex-row w-full max-w-screen-xl mx-auto overflow-hidden border border-brown-500 bg-white rounded-lg shadow-lg mb-4"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -85,8 +85,8 @@ const SignupPage = () => {
             <img className="w-auto h-7 sm:h-8" src={image.logo} alt="" />
           </div>
 
-          <p className="mt-3 text-xl text-center text-gray-600 ">
-            Daftar
+          <p className="mt-3 text-xl font-extrabold text-center text-gray-600 ">
+            Daftar akun Rukun Perkasa
           </p>
           
           {/* Form inputs */}

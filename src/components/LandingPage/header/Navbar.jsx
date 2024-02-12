@@ -37,8 +37,7 @@ function Navbar({ isHamburgerOpen }) {
           <>
             <NavLink
               to="/masuk"
-              className="btn-link"
-              activeclassname="btn-link active" 
+              className="btn-link2"
               title="Tombol menu masuk"
               aria-label="Tombol menu masuk"
             >
@@ -47,7 +46,6 @@ function Navbar({ isHamburgerOpen }) {
             <NavLink
               to="/daftar"
               className="btn-link"
-              activeclassname="btn-link active" 
               title="Tombol menu daftar"
               aria-label="Tombol menu daftar"
             >
