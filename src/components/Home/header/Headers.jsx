@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiShoppingCart, FiUser, FiLogOut } from 'react-icons/fi';
 
-const Header = () => {
+const Headers = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
     const [isProfileOpen, setIsProfileOpen] = useState(false); // State for profile dropdown
 
@@ -90,4 +90,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default Headers;

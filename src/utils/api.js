@@ -1,6 +1,7 @@
 import axios from "axios";
 const apiURL = "http://localhost:3000/api";
 
+// Authentication Functions
 export const isAuthenticate = () =>
   localStorage.getItem("jwt") ? JSON.parse(localStorage.getItem("jwt")) : false;
 
@@ -29,14 +30,26 @@ export const signupReq = async ({ name, email, password, cPassword }) => {
   }
 };
 
+export const getAccessToken = () => {
+  return localStorage.getItem("jwt")
+    ? JSON.parse(localStorage.getItem("jwt")).token
+    : null;
+};
+
+// User Functions
 export const getUserById = async (uId) => {
   try {
-    let res = await axios.post(`${apiURL}/users/single-user`, { uId });
+    let res = await axios.post(`${apiURL}/users/single-user`, { uId }, {
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`
+      }
+    });
     return res.data;
   } catch (error) {
     console.log(error);
   }
 };
+
 
 export const updatePersonalInformationFetch = async (userData) => {
   try {
@@ -65,15 +78,67 @@ export const updatePassword = async (formData) => {
   }
 };
 
-export const DashboardData = async () => {
+// Order Functions
+export const getAllOrder = async () => {
   try {
-    let res = await axios.post(`${apiURL}/customize/dashboard-data`);
+    let res = await axios.get(`${apiURL}/orders/get-all-orders`, {
+      headers: { Authorization: `Bearer ${getAccessToken()}` },
+    });
     return res.data;
   } catch (error) {
     console.log(error);
   }
 };
 
+export const createOrder = async (orderData) => {
+  try {
+    let res = await axios.post(`${apiURL}/orders/create-order`, orderData, {
+      headers: { Authorization: `Bearer ${getAccessToken()}` },
+    });
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const editCategory = async (oId, status) => {
+  let data = { oId: oId, status: status };
+  console.log(data);
+  try {
+    let res = await axios.post(`${apiURL}/orders/update-order`, data, {
+      headers: { Authorization: `Bearer ${getAccessToken()}` },
+    });
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteOrder = async (oId) => {
+  let data = { oId: oId };
+  try {
+    let res = await axios.post(`${apiURL}/orders/delete-order`, data, {
+      headers: { Authorization: `Bearer ${getAccessToken()}` },
+    });
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Dashboard Functions
+export const DashboardData = async () => {
+  try {
+    let res = await axios.post(`${apiURL}/customize/dashboard-data`, null, {
+      headers: { Authorization: `Bearer ${getAccessToken()}` },
+    });
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Slider Functions
 export const getSliderImages = async () => {
   try {
     let res = await axios.get(`${apiURL}/customize/get-slide-image`);
@@ -87,7 +152,10 @@ export const postUploadImage = async (formData) => {
   try {
     let res = await axios.post(
       `${apiURL}/customize/upload-slide-image`,
-      formData
+      formData,
+      {
+        headers: { Authorization: `Bearer ${getAccessToken()}` },
+      }
     );
     return res.data;
   } catch (error) {
@@ -97,69 +165,25 @@ export const postUploadImage = async (formData) => {
 
 export const postDeleteImage = async (id) => {
   try {
-    let res = await axios.post(`${apiURL}/customize/delete-slide-image`, {
-      id,
-    });
+    let res = await axios.post(
+      `${apiURL}/customize/delete-slide-image`,
+      { id },
+      {
+        headers: { Authorization: `Bearer ${getAccessToken()}` },
+      }
+    );
     return res.data;
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getAllOrder = async () => {
-  try {
-    let res = await axios.get(`${apiURL}/orders/get-all-orders`);
-    return res.data;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const createOrder = async (orderData) => {
-  try {
-    let res = await axios.post(`${apiURL}/orders/create-order`, orderData);
-    return res.data;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const editCategory = async (oId, status) => {
-  let data = { oId: oId, status: status };
-  console.log(data);
-  try {
-    let res = await axios.post(`${apiURL}/orders/update-order`, data);
-    return res.data;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const deleteOrder = async (oId) => {
-  let data = { oId: oId };
-  try {
-    let res = await axios.post(`${apiURL}/orders/delete-order`, data);
-    return res.data;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const BearerToken = () =>
-  localStorage.getItem("jwt")
-    ? JSON.parse(localStorage.getItem("jwt")).token
-    : false;
-const Headers = () => {
-  return {
-    headers: {
-      token: `Bearer ${BearerToken()}`,
-    },
-  };
-};
-
+// Category Functions
 export const getAllCategory = async () => {
   try {
-    let res = await axios.get(`${apiURL}/categories/all-category`, Headers());
+    let res = await axios.get(`${apiURL}/categories/all-category`, {
+      headers: { Authorization: `Bearer ${getAccessToken()}` },
+    });
     return res.data;
   } catch (error) {
     console.log(error);
@@ -182,7 +206,9 @@ export const createCategory = async ({
     let res = await axios.post(
       `${apiURL}/categories/add-category`,
       formData,
-      Headers()
+      {
+        headers: { Authorization: `Bearer ${getAccessToken()}` },
+      }
     );
     return res.data;
   } catch (error) {
@@ -190,33 +216,7 @@ export const createCategory = async ({
   }
 };
 
-export const updateCategory = async (cId, des, status) => {
-  let data = { cId: cId, cDescription: des, cStatus: status };
-  try {
-    let res = await axios.post(
-      `${apiURL}/categories/edit-category`,
-      data,
-      Headers()
-    );
-    return res.data;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const deleteCategory = async (cId) => {
-  try {
-    let res = await axios.post(
-      `${apiURL}/categories/delete-category`,
-      { cId },
-      Headers()
-    );
-    return res.data;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
+// Product Functions
 export const getAllProduct = async () => {
   try {
     let res = await axios.get(`${apiURL}/products/all-product`);
@@ -226,7 +226,7 @@ export const getAllProduct = async () => {
   }
 };
 
-export const createPorductImage = async ({ image }) => {
+export const createProductImage = async ({ image }) => {
   /* Most important part for uploading multiple image  */
   let formData = new FormData();
   for (const file of image) {
@@ -260,7 +260,9 @@ export const createProduct = async ({
   formData.append("offer", offer);
 
   try {
-    let res = await axios.post(`${apiURL}/products/add-product`, formData);
+    let res = await axios.post(`${apiURL}/products/add-product`, formData, {
+      headers: { Authorization: `Bearer ${getAccessToken()}` },
+    });
     return res.data;
   } catch (error) {
     console.log(error);
@@ -288,7 +290,9 @@ export const editProduct = async (product) => {
   formData.append("images", product.images);
 
   try {
-    let res = await axios.post(`${apiURL}/products/edit-product`, formData);
+    let res = await axios.post(`${apiURL}/products/edit-product`, formData, {
+      headers: { Authorization: `Bearer ${getAccessToken()}` },
+    });
     return res.data;
   } catch (error) {
     console.log(error);
@@ -297,7 +301,13 @@ export const editProduct = async (product) => {
 
 export const deleteProduct = async (pId) => {
   try {
-    let res = await axios.post(`${apiURL}/products/delete-product`, { pId });
+    let res = await axios.post(
+      `${apiURL}/products/delete-product`,
+      { pId },
+      {
+        headers: { Authorization: `Bearer ${getAccessToken()}` },
+      }
+    );
     return res.data;
   } catch (error) {
     console.log(error);
@@ -357,7 +367,9 @@ export const getSingleProduct = async (pId) => {
 
 export const postAddReview = async (formData) => {
   try {
-    let res = await axios.post(`${apiURL}/products/add-review`, formData);
+    let res = await axios.post(`${apiURL}/products/add-review`, formData, {
+      headers: { Authorization: `Bearer ${getAccessToken()}` },
+    });
     return res.data;
   } catch (error) {
     console.log(error);
@@ -366,7 +378,9 @@ export const postAddReview = async (formData) => {
 
 export const postDeleteReview = async (formData) => {
   try {
-    let res = await axios.post(`${apiURL}/products/delete-review`, formData);
+    let res = await axios.post(`${apiURL}/products/delete-review`, formData, {
+      headers: { Authorization: `Bearer ${getAccessToken()}` },
+    });
     return res.data;
   } catch (error) {
     console.log(error);

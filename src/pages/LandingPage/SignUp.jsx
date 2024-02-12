@@ -6,7 +6,7 @@ import SignupPage from "../../components/LandingPage/signup/SignUpPage";
 function SignUp() {
     return (
         <Layout>
-            <SignupPage />
+            <SignupPage  />
         </Layout>
     )
 }
