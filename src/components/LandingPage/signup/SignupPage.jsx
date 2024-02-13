@@ -9,7 +9,7 @@ import { image } from '../data/imgData';
 
 const SignupPage = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [cPassword, setcPassword] = useState('');
@@ -41,10 +41,10 @@ const SignupPage = () => {
       }
 
       // Call signupReq API
-      await signupReq({ name: username, email, password, cPassword });
+      await signupReq({ name: name, email, password, cPassword });
 
       // If successful, clear form fields
-      setUsername('');
+      setName('');
       setEmail('');
       setPassword('');
       setcPassword('');
@@ -97,8 +97,8 @@ const SignupPage = () => {
               type="text" 
               className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg" 
               placeholder="Nama Lengkap"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)} 
+              value={name}
+              onChange={(e) => setName(e.target.value)} 
             />
           </div>
 

@@ -1,8 +1,8 @@
-import Layout from "../../components/Dashboard/Layout";
+import DashboardAdmin from "../../components/Dashboard/dashboardAdmin";
 
 function AdminPage() {
     return (
-        <Layout></Layout>
+        <DashboardAdmin />
     )
 }
 

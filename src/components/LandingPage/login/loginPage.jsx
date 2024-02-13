@@ -76,7 +76,7 @@ const LoginPage = () => {
           <img className="w-auto h-7 sm:h-8" src={image.logo} alt="" />
         </div>
 
-        <p className="mt-3 text-xl text-center text-gray-600">Masuk</p>
+        <p className="mt-3 text-xl font-extrabold text-center text-gray-600">Masuk</p>
 
         <div className="mt-4">
           <label className="block mb-2 text-sm font-medium text-gray-600" htmlFor="LoggingEmailAddress">
