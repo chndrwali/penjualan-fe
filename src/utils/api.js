@@ -216,6 +216,19 @@ export const createCategory = async ({
   }
 };
 
+export const deleteCategory = async (cId) => {
+  try {
+    let res = await axios.post(
+      `${apiURL}/categories/delete-category`,
+      { cId },
+      Headers()
+    );
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // Product Functions
 export const getAllProduct = async () => {
   try {

@@ -11,7 +11,7 @@ const Sidebar = () => {
         className="hidden md:block sticky top-0 left-0 h-screen md:w-3/12 lg:w-2/12 sidebarShadow bg-white text-gray-600"
       >
         <Link
-          to="/admin/dashboard"
+          to="/admin"
           className="hover:bg-gray-200 cursor-pointer flex flex-col items-center justify-center py-6"
         >
           <span>
