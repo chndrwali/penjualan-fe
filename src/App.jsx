@@ -13,7 +13,7 @@ import ProductPage from "./pages/Dashboard/Product-page";
 import OrdersPage from "./pages/Dashboard/Order-page";
 
 // home
-import MainPage from "./pages/Home/Main-page";
+//import MainPage from "./pages/Home/Main-page";
 
 const App = () => {
   return (
@@ -27,7 +27,6 @@ const App = () => {
         <Route path="/admin/categories" element={<CategoriesPage />} />
         <Route path="/admin/products" element={<ProductPage />} />
         <Route path="/admin/orders" element={<OrdersPage />} />
-        <Route path="/main" element={<MainPage />} />
       </Routes>
       <ToastContainer />
     </>

@@ -1,13 +1,8 @@
-/* eslint-disable no-unused-vars */
-import React from "react";
-import Layout from "../../components/Home/Layout";
-import ImageCarousel from "../../components/Home/Carousel/ImageCarousel";
+import Home from "../../components/Home/shop";
 
 function MainPage() {
     return (
-        <Layout>
-            <ImageCarousel />
-        </Layout>
+        <Home></Home>
     )
 }
 
