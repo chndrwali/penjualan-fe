@@ -5,6 +5,7 @@ import { loginReq } from '../../../utils/api';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { image } from '../data/imgData';
+import { setAuthToken } from '../data/auth'; // Import fungsi setAuthToken
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const LoginPage = () => {
     try {
       const response = await loginReq({ email: username, password });
       if (response.token) {
+        setAuthToken(response.token);
         toast.success('Login successful');
         navigate('/admin');
       } else {
@@ -40,6 +42,7 @@ const LoginPage = () => {
       const response = await loginReq({ email: username, password });
       if (response.token) {
         toast.success('Login successful');
+        setAuthToken(response.token); // Simpan token ke local storage
         navigate('/main');
       } else {
         toast.error('Failed to login. Please check your credentials.');

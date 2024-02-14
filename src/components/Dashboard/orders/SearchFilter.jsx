@@ -1,7 +1,14 @@
-/* eslint-disable no-unused-vars */
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
+import PropTypes from "prop-types"
 
-const SearchFilter = (props) => {
+const SearchFilter = ({ onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+    onSearch(e.target.value);
+  };
+
   return (
     <Fragment>
       <div className="rounded-full flex items-center justify-between overflow-hidden">
@@ -23,10 +30,17 @@ const SearchFilter = (props) => {
           placeholder="Transaction id..."
           className="py-2 px-2 focus:outline-none rounded-r-full w-full"
           type="text"
+          value={searchTerm}
+          onChange={handleChange}
         />
       </div>
     </Fragment>
   );
+};
+
+
+SearchFilter.propTypes = {
+  onSearch: PropTypes.func.isRequired, // onSearch harus berupa fungsi dan wajib ada
 };
 
 export default SearchFilter;

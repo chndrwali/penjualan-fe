@@ -42,7 +42,7 @@ const Header = () => {
             style={{ letterSpacing: "0.10rem" }}
             className="flex items-left font-bold uppercase text-gray-800 text-2xl cursor-pointer px-2 text-center"
           >
-            Hayroo
+            Rukun Perkasa
           </span>
         </div>
         {/* Both Screen show */}
@@ -63,7 +63,7 @@ const Header = () => {
               <div className="userDropdown absolute right-0 mt-1 bg-gray-200 rounded">
                 <li className="flex flex-col text-gray-700">
                   <Link
-                    to="/"
+                    to="/main"
                     className="flex space-x-1 py-2 px-8 hover:bg-gray-400 cursor-pointer"
                   >
                     <FaTachometerAlt className="w-6 h-6" />

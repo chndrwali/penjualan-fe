@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Fragment, useContext, useEffect } from "react";
 import { DashboardContext } from "./";
 import { uploadImage, sliderImages, deleteImage } from "./action";
@@ -8,17 +7,23 @@ const apiURL = "https://localhost:3000/api";
 const Customize = () => {
   const { data, dispatch } = useContext(DashboardContext);
 
+  const toggleUploadSliderBtn = () => {
+    dispatch({
+      type: "uploadSliderBtn",
+      payload: !data.uploadSliderBtn,
+    });
+  };
+
+  useEffect(() => {
+    sliderImages(dispatch);
+  }, [dispatch]);
+
   return (
     <Fragment>
       <div className="m-4 md:w-1/2">
         {!data.uploadSliderBtn ? (
           <div
-            onClick={(e) =>
-              dispatch({
-                type: "uploadSliderBtn",
-                payload: !data.uploadSliderBtn,
-              })
-            }
+            onClick={toggleUploadSliderBtn}
             style={{ background: "#303031" }}
             className="cursor-pointer rounded-full p-2 flex items-center justify-center text-gray-100 text-sm font-semibold uppercase"
           >
@@ -36,11 +41,9 @@ const Customize = () => {
             </svg>
             Customize Slider Image
           </div>
-        ) : (
-          ""
-        )}
+        ) : null}
       </div>
-      {data.uploadSliderBtn ? <UploadImageSection /> : ""}
+      {data.uploadSliderBtn ? <UploadImageSection /> : null}
     </Fragment>
   );
 };
@@ -51,6 +54,14 @@ const UploadImageSection = () => {
   const uploadImageHandler = (image) => {
     uploadImage(image, dispatch);
   };
+
+  const toggleUploadSliderBtn = () => {
+    dispatch({
+      type: "uploadSliderBtn",
+      payload: !data.uploadSliderBtn,
+    });
+  };
+
 
   return (
     <Fragment>
@@ -89,12 +100,7 @@ const UploadImageSection = () => {
           />
         </div>
         <span
-          onClick={(e) =>
-            dispatch({
-              type: "uploadSliderBtn",
-              payload: !data.uploadSliderBtn,
-            })
-          }
+          onClick={toggleUploadSliderBtn}
           style={{ background: "#303031" }}
           className="cursor-pointer absolute top-0 right-0 m-4 rounded-full p-1"
         >
@@ -122,11 +128,6 @@ const UploadImageSection = () => {
 const AllImages = () => {
   const { data, dispatch } = useContext(DashboardContext);
 
-  useEffect(() => {
-    sliderImages(dispatch);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const deleteImageReq = (id) => {
     deleteImage(id, dispatch);
   };
@@ -150,9 +151,7 @@ const AllImages = () => {
             ></path>
           </svg>
         </div>
-      ) : (
-        ""
-      )}
+      ) : null}
       <div className="grid grid-cols-1 md:grid md:grid-cols-2 lg:grid-cols-3 my-4">
         {data.sliderImages.length > 0 ? (
           data.sliderImages.map((item, index) => {
@@ -164,7 +163,7 @@ const AllImages = () => {
                   alt="sliderImages"
                 />
                 <span
-                  onClick={(e) => deleteImageReq(item._id)}
+                  onClick={() => deleteImageReq(item._id)}
                   style={{ background: "#303031" }}
                   className="absolute top-0 right-0 m-1 text-white cursor-pointer rounded-full p-1"
                 >

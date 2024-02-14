@@ -1,9 +1,8 @@
-/* eslint-disable no-unused-vars */
 import { Fragment, useContext, useEffect } from "react";
 import { DashboardContext } from "./";
 import { GetAllData } from "./action";
 
-const DashboardCard = (props) => {
+const DashboardCard = () => {
   const { data, dispatch } = useContext(DashboardContext);
 
   useEffect(() => {
@@ -33,28 +32,9 @@ const DashboardCard = (props) => {
             </svg>
           </div>
           <div className="text-2xl font-semibold">
-            {data ? data.totalData.Users : 0}
+            {data?.totalData?.Users ?? 0}
           </div>
           <div className="text-lg font-medium">Customers</div>
-          <div className="flex items-center space-x-1 text-green-500">
-            <span>7%</span>
-            <span>
-              <svg
-                className="w-3 h-3"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 10l7-7m0 0l7 7m-7-7v18"
-                />
-              </svg>
-            </span>
-          </div>
         </div>
         <div className="flex flex-col justify-center items-center col-span-1 bg-white p-6 shadow-lg hover:shadow-none cursor-pointer transition-all duration-300 ease-in border-b-4 border-opacity-0 hover:border-opacity-100 border-red-200">
           <div className="bg-red-200 p-2 cursor-pointer rounded-full">
@@ -74,28 +54,9 @@ const DashboardCard = (props) => {
             </svg>
           </div>
           <div className="text-2xl font-semibold">
-            {data ? data.totalData.Orders : 0}
+            {data?.totalData?.Orders ?? 0}
           </div>
           <div className="text-lg font-medium">Orders</div>
-          <div className="flex items-center space-x-1 text-green-500">
-            <span>10%</span>
-            <span>
-              <svg
-                className="w-3 h-3"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 10l7-7m0 0l7 7m-7-7v18"
-                />
-              </svg>
-            </span>
-          </div>
         </div>
         <div className="flex flex-col justify-center items-center col-span-1 bg-white p-6 shadow-lg hover:shadow-none cursor-pointer transition-all duration-300 ease-in border-b-4 border-opacity-0 hover:border-opacity-100 border-green-200">
           <div className="bg-green-200 p-2 cursor-pointer rounded-full">
@@ -113,7 +74,7 @@ const DashboardCard = (props) => {
             </svg>
           </div>
           <div className="text-2xl font-semibold">
-            {data ? data.totalData.Products : 0}
+            {data?.totalData?.Products ?? 0}
           </div>
           <div className="text-lg font-medium">Product</div>
         </div>
@@ -135,7 +96,7 @@ const DashboardCard = (props) => {
             </svg>
           </div>
           <div className="text-2xl font-semibold">
-            {data ? data.totalData.Categories : 0}
+            {data?.totalData?.Categories ?? 0}
           </div>
           <div className="text-lg font-medium">Categories</div>
         </div>
