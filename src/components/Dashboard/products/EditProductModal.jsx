@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { Fragment, useContext, useState, useEffect } from "react";
 import { ProductContext } from "./index";
-import { editProduct, getAllProduct, getAllCategory } from "../../../utils/api";
+import PRODUCT_API from "../../../api/product-api";
+import CATEGORIES_API from "../../../api/categories-api";
 const apiURL = "http://localhost:3000/api";
 
 const EditProductModal = (props) => {
@@ -33,7 +34,7 @@ const EditProductModal = (props) => {
   }, []);
 
   const fetchCategoryData = async () => {
-    let responseData = await getAllCategory();
+    let responseData = await CATEGORIES_API.getAllCategories();
     if (responseData.Categories) {
       setCategories(responseData.Categories);
     }
@@ -54,7 +55,7 @@ const EditProductModal = (props) => {
   }, [data.editProductModal]);
 
   const fetchData = async () => {
-    let responseData = await getAllProduct();
+    let responseData = await PRODUCT_API.getAllProduct();
     if (responseData && responseData.Products) {
       dispatch({
         type: "fetchProductsAndChangeState",
@@ -71,7 +72,7 @@ const EditProductModal = (props) => {
       console.log("Image uploading");
     }
     try {
-      let responseData = await editProduct(editformData);
+      let responseData = await PRODUCT_API.editProduct(editformData);
       if (responseData.success) {
         fetchData();
         setEditformdata({ ...editformData, success: responseData.success });

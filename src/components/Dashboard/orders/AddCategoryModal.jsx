@@ -1,6 +1,6 @@
 import { Fragment, useContext, useState } from "react";
 import { CategoryContext } from "./index";
-import { createCategory, getAllCategory } from "../../../utils/api";
+import CATEGORIES_API from "../../../api/categories-api";
 
 const AddCategoryModal = () => {
   const { data, dispatch } = useContext(CategoryContext);
@@ -15,7 +15,7 @@ const AddCategoryModal = () => {
 
   const fetchData = async () => {
     try {
-      const responseData = await getAllCategory();
+      const responseData = await CATEGORIES_API.getAllCategories();
       if (responseData.Categories) {
         dispatch({
           type: "fetchCategoryAndChangeState",
@@ -39,7 +39,7 @@ const AddCategoryModal = () => {
     }
 
     try {
-      let responseData = await createCategory(fData);
+      let responseData = await CATEGORIES_API.addCategory(fData);
       if (responseData.success) {
         fetchData();
         setFdata({

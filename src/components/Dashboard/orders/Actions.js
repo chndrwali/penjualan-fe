@@ -1,11 +1,9 @@
-// Actions.js
-
-import { getAllOrder, deleteOrder } from "../../../utils/api";
+import ORDERS_API from "../../../api/orders-api";
 
 export const fetchData = async (dispatch) => {
   dispatch({ type: "loading", payload: true });
   try {
-    const responseData = await getAllOrder();
+    const responseData = await ORDERS_API.getAllOrders();
     if (responseData && responseData.Orders) {
       dispatch({
         type: "fetchOrderAndChangeState",
@@ -27,7 +25,7 @@ export const editOrderReq = (oId, type, status, dispatch) => {
 
 export const deleteOrderReq = async (oId, dispatch) => {
   try {
-    const responseData = await deleteOrder(oId);
+    const responseData = await ORDERS_API.deleteOrder(oId);
     if (responseData && responseData.success) {
       fetchData(dispatch);
     }
@@ -44,7 +42,7 @@ export const filterOrder = async (
   setDropdown
 ) => {
   try {
-    const responseData = await getAllOrder();
+    const responseData = await ORDERS_API.getAllOrders();
     if (responseData && responseData.Orders) {
       let newData;
       const statusFilters = {

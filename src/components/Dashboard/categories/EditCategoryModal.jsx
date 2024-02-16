@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { Fragment, useContext, useState, useEffect } from "react";
 import { CategoryContext } from "./index";
-import { editCategory, getAllCategory } from "../../../utils/api";
+import CATEGORIES_API from "../../../api/categories-api";
 
 const EditCategoryModal = () => {
   const { data, dispatch } = useContext(CategoryContext);
@@ -19,7 +19,7 @@ const EditCategoryModal = () => {
 
   const fetchData = async () => {
     try {
-      const responseData = await getAllCategory();
+      const responseData = await CATEGORIES_API.getAllCategories();
       if (responseData.Categories) {
         dispatch({
           type: "fetchCategoryAndChangeState",
@@ -34,7 +34,7 @@ const EditCategoryModal = () => {
   const submitForm = async () => {
     dispatch({ type: "loading", payload: true });
     try {
-      const edit = await editCategory(cId, des, status);
+      const edit = await CATEGORIES_API.editCategory(cId, des, status);
       if (edit.success) {
         console.log(edit.success);
         dispatch({ type: "editCategoryModalClose" });

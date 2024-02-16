@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { Fragment, useContext, useEffect, useState } from "react";
-import { getAllProduct, deleteProduct } from "../../../utils/api";
+import PRODUCT_API from "../../../api/product-api";
 import moment from "moment";
 import { ProductContext } from "./index";
 
@@ -20,7 +20,7 @@ const AllProduct = (props) => {
 
   const fetchData = async () => {
     setLoading(true);
-    let responseData = await getAllProduct();
+    let responseData = await PRODUCT_API.getAllProduct();
     setTimeout(() => {
       if (responseData && responseData.Products) {
         dispatch({
@@ -33,7 +33,7 @@ const AllProduct = (props) => {
   };
 
   const deleteProductReq = async (pId) => {
-    let deleteC = await deleteProduct(pId);
+    let deleteC = await PRODUCT_API.deleteProduct(pId);
     if (deleteC.error) {
       console.log(deleteC.error);
     } else if (deleteC.success) {

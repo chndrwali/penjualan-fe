@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Fragment, useContext, useEffect, useCallback } from "react";
-import { getAllCategory, deleteCategory } from "../../../utils/api";
+import CATEGORIES_API from "../../../api/categories-api";
 import { CategoryContext } from "./index";
 import moment from "moment";
 
@@ -13,7 +13,7 @@ const AllCategory = () => {
   const fetchData = useCallback(async () => {
     dispatch({ type: "loading", payload: true });
     try {
-      const responseData = await getAllCategory();
+      const responseData = await CATEGORIES_API.getAllCategories();
       if (responseData && responseData.Categories) {
         dispatch({
           type: "fetchCategoryAndChangeState",
@@ -33,7 +33,7 @@ const AllCategory = () => {
 
   const deleteCategoryReq = async (categoryId) => {
     try {
-      const deleteResult = await deleteCategory(categoryId);
+      const deleteResult = await CATEGORIES_API.deleteCategory(categoryId);
       if (deleteResult.success) {
         console.log(deleteResult.success);
         fetchData();

@@ -37,7 +37,7 @@ const LoginPage = () => {
       .then(() => {
         // Navigasi berdasarkan jenis pengguna
         if (email === 'admin@gmail.com') {
-          navigate('/admin/dashboard');
+          navigate('/admin');
         } else {
           navigate('/home');
         }

@@ -2,7 +2,8 @@
 /* eslint-disable react/prop-types */
 import { Fragment, useContext, useState, useEffect } from "react";
 import { ProductContext } from "./index";
-import { createProduct, getAllProduct, getAllCategory } from "../../../utils/api";
+import CATEGORIES_API from "../../../api/categories-api";
+import PRODUCT_API from "../../../api/product-api";
 
 const AddProductDetail = ({ categories }) => {
   const { data, dispatch } = useContext(ProductContext);
@@ -25,7 +26,7 @@ const AddProductDetail = ({ categories }) => {
   });
 
   const fetchData = async () => {
-    let responseData = await getAllProduct();
+    let responseData = await PRODUCT_API.getAllProduct();
     setTimeout(() => {
       if (responseData && responseData.Products) {
         dispatch({
@@ -48,7 +49,7 @@ const AddProductDetail = ({ categories }) => {
     }
 
     try {
-      let responseData = await createProduct(fData);
+      let responseData = await PRODUCT_API.postProduct(fData);
       if (responseData.success) {
         fetchData();
         setFdata({
@@ -330,7 +331,7 @@ const AddProductModal = (props) => {
   const [allCat, setAllCat] = useState({});
 
   const fetchCategoryData = async () => {
-    let responseData = await getAllCategory();
+    let responseData = await CATEGORIES_API.getAllCategories();
     if (responseData.Categories) {
       setAllCat(responseData.Categories);
     }

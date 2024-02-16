@@ -1,6 +1,7 @@
 import { Fragment, useContext, useState, useEffect } from "react";
 import { OrderContext } from "./index";
-import { getAllOrder, editCategory } from "../../../utils/api";
+import ORDERS_API from "../../../api/orders-api";
+import CATEGORIES_API from "../../../api/categories-api";
 
 const UpdateOrderModal = () => {
   const { data, dispatch } = useContext(OrderContext);
@@ -14,7 +15,7 @@ const UpdateOrderModal = () => {
 
   const fetchData = async () => {
     try {
-      const responseData = await getAllOrder();
+      const responseData = await ORDERS_API.getAllOrders();
       if (responseData.Orders) {
         dispatch({
           type: "fetchOrderAndChangeState",
@@ -29,7 +30,7 @@ const UpdateOrderModal = () => {
   const submitForm = async () => {
     dispatch({ type: "loading", payload: true });
     try {
-      const responseData = await editCategory(oId, status);
+      const responseData = await CATEGORIES_API.editCategory(oId, status);
       if (responseData.success) {
         dispatch({ type: "updateOrderModalClose" });
         fetchData();

@@ -1,14 +1,9 @@
-import {
-  DashboardData,
-  postUploadImage,
-  getSliderImages,
-  postDeleteImage,
-  getAllOrder
-} from "../../../utils/api";
+import CUSTOMIZE_API from "../../../api/customize-api";
+import ORDERS_API from "../../../api/orders-api";
 
 export const GetAllData = async (dispatch) => {
   try {
-    const responseData = await DashboardData();
+    const responseData = await CUSTOMIZE_API.getDashboardData();
     if (responseData) {
       dispatch({ type: "totalData", payload: responseData });
     }
@@ -19,7 +14,7 @@ export const GetAllData = async (dispatch) => {
 
 export const todayAllOrders = async (dispatch) => {
   try {
-    const responseData = await getAllOrder();
+    const responseData = await ORDERS_API.getAllOrders();
     if (responseData) {
       dispatch({ type: "totalOrders", payload: responseData });
     }
@@ -30,7 +25,7 @@ export const todayAllOrders = async (dispatch) => {
 
 export const sliderImages = async (dispatch) => {
   try {
-    const responseData = await getSliderImages();
+    const responseData = await CUSTOMIZE_API.getSlideImage();
     if (responseData && responseData.Images) {
       dispatch({ type: "sliderImages", payload: responseData.Images });
     }
@@ -42,7 +37,7 @@ export const sliderImages = async (dispatch) => {
 export const deleteImage = async (id, dispatch) => {
   dispatch({ type: "imageUpload", payload: true });
   try {
-    const responseData = await postDeleteImage(id);
+    const responseData = await CUSTOMIZE_API.deleteSlideImage (id);
     if (responseData && responseData.success) {
       sliderImages(dispatch);
     }
@@ -58,7 +53,7 @@ export const uploadImage = async (image, dispatch) => {
   const formData = new FormData();
   formData.append("image", image);
   try {
-    const responseData = await postUploadImage(formData);
+    const responseData = await CUSTOMIZE_API.uploadSlideImage(formData);
     if (responseData && responseData.success) {
       sliderImages(dispatch);
     }
