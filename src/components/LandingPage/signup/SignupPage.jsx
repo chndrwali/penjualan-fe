@@ -1,14 +1,16 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
-import { signupReq } from '../../../utils/api';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { image } from '../data/imgData';
-
+import { asyncRegisterUser } from '../../../states/registerUser/action';
 
 const SignupPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,34 +29,15 @@ const SignupPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      // Validate passwords match
-      if (password !== cPassword) {
-        setError('Passwords do not match');
-        return;
-      }
-
-      // Check if email is admin@gmail.com
-      if (email === 'admin@gmail.com') {
-        setError('Sign up with email admin@gmail.com is not allowed');
-        return;
-      }
-
-      // Call signupReq API
-      await signupReq({ name: name, email, password, cPassword });
-
-      // If successful, clear form fields
-      setName('');
-      setEmail('');
-      setPassword('');
-      setcPassword('');
-      setError('');
-
-      // Show success toast and navigate to login page
-      toast.success('Sign up successful! Please login.');
-      navigate('/masuk');
-    } catch (error) {
-      setError('Failed to sign up. Please try again.');
+    if (name && email && password && cPassword) {
+      dispatch(asyncRegisterUser({ name, email, password, cPassword })).then(() => {
+        toast.success('Registrasi berhasil! Silahkan masuk.');
+        navigate('/masuk');
+      }).catch((error) => {
+        setError(error.message);
+      });
+    } else {
+      setError('All fields are required.');
     }
   };
 
@@ -88,8 +71,6 @@ const SignupPage = () => {
           <p className="mt-3 text-xl font-extrabold text-center text-gray-600 ">
             Daftar akun Rukun Perkasa
           </p>
-          
-          {/* Form inputs */}
           
           <div className="mt-4">
             <label className="block mb-2 text-sm font-medium text-gray-600" >Nama Lengkap</label>

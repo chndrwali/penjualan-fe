@@ -1,14 +1,16 @@
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
-import { loginReq } from '../../../utils/api';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { image } from '../data/imgData';
-import { setAuthToken } from '../data/auth'; // Import fungsi setAuthToken
+import { asyncSetAuthUser } from '../../../states/authUser/action';
+import useInput from '../../../hooks/useInput';
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch(); // Dapatkan dispatcher Redux
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.8 } },
@@ -19,47 +21,34 @@ const LoginPage = () => {
     visible: { opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.8, ease: 'easeInOut' } },
   };
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLoginAdmin = async () => {
-    try {
-      const response = await loginReq({ email: username, password });
-      if (response.token) {
-        setAuthToken(response.token);
-        toast.success('Login successful');
-        navigate('/admin');
-      } else {
-        toast.error('Failed to login. Please check your credentials.');
-      }
-    } catch (error) {
-      toast.error('Failed to login. Please try again.');
-    }
-  };
-
-  const handleLoginUser = async () => {
-    try {
-      const response = await loginReq({ email: username, password });
-      if (response.token) {
-        toast.success('Login successful');
-        setAuthToken(response.token); // Simpan token ke local storage
-        navigate('/main');
-      } else {
-        toast.error('Failed to login. Please check your credentials.');
-      }
-    } catch (error) {
-      toast.error('Failed to login. Please try again.');
-    }
-  };
+  const [username, setUsername] = useInput('');
+  const [password, setPassword] = useInput('');
 
   const handleLogin = () => {
-    if (username && password) {
-      if (username === 'admin@gmail.com') {
-        handleLoginAdmin();
-      } else {
-        handleLoginUser();
-      }
+    if (!username || !password) {
+      toast.error('Email dan password harus diisi.');
+      return;
     }
+    onLogin({ email: username, password });
+  };
+
+  const onLogin = ({ email, password }) => {
+    dispatch(asyncSetAuthUser({ email, password }))
+      .then(() => {
+        // Navigasi berdasarkan jenis pengguna
+        if (email === 'admin@gmail.com') {
+          navigate('/admin/dashboard');
+        } else {
+          navigate('/home');
+        }
+        // Tampilkan pesan toast jika login berhasil
+        toast.success('Login berhasil!');
+      })
+      .catch((error) => {
+        console.error("Error while logging in:", error);
+        // Tambahkan notifikasi jika login gagal
+        toast.error('Login gagal. Silakan periksa kredensial Anda.');
+      });
   };
 
   const handleKeyPress = (e) => {

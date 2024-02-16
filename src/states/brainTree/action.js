@@ -1,5 +1,5 @@
 import axios from "axios";
-import API_ENDPOINT from "../globals/api-endpoint";
+import API_ENDPOINT from "../../globals/api-endpoint";
 
 const ActionType = {
   GET_BRAINTREE_TOKEN_REQUEST: 'GET_BRAINTREE_TOKEN_REQUEST',

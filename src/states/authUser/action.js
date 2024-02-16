@@ -1,146 +1,58 @@
-import axios from "axios";
-import API_ENDPOINT from "../globals/api-endpoint";
+import AUTH_API from "../../api/auth-api";
 
 const ActionType = {
-  LOGIN_REQUEST: 'LOGIN_REQUEST',
-  LOGIN_SUCCESS: 'LOGIN_SUCCESS',
-  LOGIN_FAILURE: 'LOGIN_FAILURE',
-  REGISTER_REQUEST: 'REGISTER_REQUEST',
-  REGISTER_SUCCESS: 'REGISTER_SUCCESS',
-  REGISTER_FAILURE: 'REGISTER_FAILURE',
-  CHECK_ADMIN_REQUEST: 'CHECK_ADMIN_REQUEST',
-  CHECK_ADMIN_SUCCESS: 'CHECK_ADMIN_SUCCESS',
-  CHECK_ADMIN_FAILURE: 'CHECK_ADMIN_FAILURE',
-  GET_ALL_USERS_REQUEST: 'GET_ALL_USERS_REQUEST',
-  GET_ALL_USERS_SUCCESS: 'GET_ALL_USERS_SUCCESS',
-  GET_ALL_USERS_FAILURE: 'GET_ALL_USERS_FAILURE',
+  SET_AUTH_USER: 'SET_AUTH_USER',
+  UNSET_AUTH_USER: 'UNSET_AUTH_USER'
 };
 
-const loginRequest = () => ({
-  type: ActionType.LOGIN_REQUEST,
-});
+function setAuthUserActionCreator(userData) {
+    return {
+        type: ActionType.SET_AUTH_USER,
+        payload: {
+            userData
+        },
+    };
+}
 
-const loginSuccess = (userData) => ({
-  type: ActionType.LOGIN_SUCCESS,
-  payload: userData,
-});
+function unsetAuthUserActionCreator() {
+    return {
+        type: ActionType.UNSET_AUTH_USER,
+        payload: {
+            userData: null,
+        },
+    };
+}
 
-const loginFailure = (error) => ({
-  type: ActionType.LOGIN_FAILURE,
-  payload: error,
-});
+function asyncSetAuthUser({ email, password }) {
+    return async (dispatch) => {
+        try {
+            const userData = await AUTH_API.loginUser({ email, password });
+            AUTH_API.putAuthenticate(userData);
+            dispatch(setAuthUserActionCreator(userData));
+        } catch (error) {
+            alert(error.message);
+        }
+    };
+}
 
-const registerRequest = () => ({
-  type: ActionType.REGISTER_REQUEST,
-});
-
-const registerSuccess = (userData) => ({
-  type: ActionType.REGISTER_SUCCESS,
-  payload: userData,
-});
-
-const registerFailure = (error) => ({
-  type: ActionType.REGISTER_FAILURE,
-  payload: error,
-});
-
-const checkAdminRequest = () => ({
-  type: ActionType.CHECK_ADMIN_REQUEST,
-});
-
-const checkAdminSuccess = (isAdmin) => ({
-  type: ActionType.CHECK_ADMIN_SUCCESS,
-  payload: isAdmin,
-});
-
-const checkAdminFailure = (error) => ({
-  type: ActionType.CHECK_ADMIN_FAILURE,
-  payload: error,
-});
-
-const getAllUsersRequest = () => ({
-  type: ActionType.GET_ALL_USERS_REQUEST,
-});
-
-const getAllUsersSuccess = (usersData) => ({
-  type: ActionType.GET_ALL_USERS_SUCCESS,
-  payload: usersData,
-});
-
-const getAllUsersFailure = (error) => ({
-  type: ActionType.GET_ALL_USERS_FAILURE,
-  payload: error,
-});
-
-const loginUser = (email, password) => {
-  return async (dispatch) => {
-    dispatch(loginRequest());
-    try {
-      const response = await axios.post(API_ENDPOINT.LOGIN, {
-        email: email,
-        password: password,
-      });
-      dispatch(loginSuccess(response.data));
-    } catch (error) {
-      dispatch(loginFailure(error));
-    }
-  };
-};
-
-const registerUser = (userData) => {
-  return async (dispatch) => {
-    dispatch(registerRequest());
-    try {
-      const response = await axios.post(API_ENDPOINT.REGISTER, userData);
-      dispatch(registerSuccess(response.data));
-    } catch (error) {
-      dispatch(registerFailure(error));
-    }
-  };
-};
-
-const checkAdmin = (loggedInUserId) => {
-  return async (dispatch) => {
-    dispatch(checkAdminRequest());
-    try {
-      const response = await axios.post(API_ENDPOINT.IS_ADMIN, {
-        loggedInUserId: loggedInUserId,
-      });
-      dispatch(checkAdminSuccess(response.data));
-    } catch (error) {
-      dispatch(checkAdminFailure(error));
-    }
-  };
-};
-
-const getAllUsers = () => {
-  return async (dispatch) => {
-    dispatch(getAllUsersRequest());
-    try {
-      const response = await axios.post(API_ENDPOINT.ALL_USER);
-      dispatch(getAllUsersSuccess(response.data));
-    } catch (error) {
-      dispatch(getAllUsersFailure(error));
-    }
-  };
-};
+function asyncUnsetAuthUser() {
+    return async (dispatch) => {
+        try {
+            // Hapus token JWT dari localStorage
+            AUTH_API.putAuthenticate('');
+            // Kirim aksi untuk menghapus status otentikasi pengguna
+            dispatch(unsetAuthUserActionCreator());
+        } catch (error) {
+            console.error("Error while logging out:", error);
+            throw error;
+        }
+    };
+}
 
 export {
   ActionType,
-  loginUser,
-  registerUser,
-  checkAdmin,
-  getAllUsers,
-  loginSuccess,
-  loginRequest,
-  loginFailure,
-  registerFailure,
-  registerSuccess,
-  registerRequest,
-  checkAdminFailure,
-  checkAdminSuccess,
-  checkAdminRequest,
-  getAllUsersFailure,
-  getAllUsersSuccess,
-  getAllUsersRequest
+  setAuthUserActionCreator,
+  unsetAuthUserActionCreator,
+  asyncSetAuthUser,
+  asyncUnsetAuthUser
 };

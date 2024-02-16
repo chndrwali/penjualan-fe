@@ -52,6 +52,10 @@ const AUTH_API = {
     return jwt ? JSON.parse(jwt) : false;
   },
 
+  putAuthenticate: (token) => {
+    localStorage.setItem("jwt", JSON.stringify(token));
+  },
+
   isAdminAuth: () => {
     const jwt = localStorage.getItem("jwt");
     return jwt ? JSON.parse(jwt).user.role === 1 : false;
