@@ -48,13 +48,10 @@ const AUTH_API = {
   },
 
   isAuthenticate: () => {
-    const jwt = localStorage.getItem("jwt");
+    const jwt = localStorage.getItem("token");
     return jwt ? JSON.parse(jwt) : false;
   },
-
-  putAuthenticate: (token) => {
-    localStorage.setItem("jwt", JSON.stringify(token));
-  },
+  
 
   isAdminAuth: () => {
     const jwt = localStorage.getItem("jwt");

@@ -24,10 +24,9 @@ function unsetAuthUserActionCreator() {
 }
 
 function asyncSetAuthUser({ email, password }) {
-    return async (dispatch) => {
+    return async (dispatch) => {   
         try {
             const userData = await AUTH_API.loginUser({ email, password });
-            AUTH_API.putAuthenticate(userData);
             dispatch(setAuthUserActionCreator(userData));
         } catch (error) {
             alert(error.message);
@@ -39,7 +38,7 @@ function asyncUnsetAuthUser() {
     return async (dispatch) => {
         try {
             // Hapus token JWT dari localStorage
-            AUTH_API.putAuthenticate('');
+            AUTH_API.isAuthenticate('');
             // Kirim aksi untuk menghapus status otentikasi pengguna
             dispatch(unsetAuthUserActionCreator());
         } catch (error) {
