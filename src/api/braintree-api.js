@@ -4,7 +4,7 @@ import API_ENDPOINT from "../globals/api-endpoint";
 const BRAINTREE_API = {
   getToken: async () => {
     try {
-      const response = await axios.get(API_ENDPOINT.GET_TOKEN);
+      const response = await axios.post(API_ENDPOINT.GET_TOKEN);
       return response.data;
     } catch (error) {
       console.error("Error while getting Braintree token:", error);

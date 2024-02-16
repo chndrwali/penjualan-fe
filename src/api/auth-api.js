@@ -39,7 +39,7 @@ const AUTH_API = {
 
   getAllUsers: async () => {
     try {
-      const response = await axios.get(API_ENDPOINT.ALL_USER);
+      const response = await axios.post(API_ENDPOINT.ALL_USER);
       return response.data;
     } catch (error) {
       console.error("Error while fetching all users:", error);

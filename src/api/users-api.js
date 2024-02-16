@@ -34,7 +34,7 @@ const USERS_API = {
 
   editUser: async (userId, userData) => {
     try {
-      const response = await axios.post(API_ENDPOINT.EDIT_USER, { uId: userId, ...userData });
+      const response = await axios.put(API_ENDPOINT.EDIT_USER, { uId: userId, ...userData });
       return response.data;
     } catch (error) {
       console.error("Error while editing user:", error);
@@ -44,7 +44,7 @@ const USERS_API = {
 
   deleteUser: async (userId) => {
     try {
-      const response = await axios.post(API_ENDPOINT.DELETE_USER, { uId: userId });
+      const response = await axios.put(API_ENDPOINT.DELETE_USER, { uId: userId });
       return response.data;
     } catch (error) {
       console.error("Error while deleting user:", error);
@@ -54,7 +54,7 @@ const USERS_API = {
 
   changePassword: async (userId, oldPassword, newPassword) => {
     try {
-      const response = await axios.post(API_ENDPOINT.CHANGE_PASSWORD, {
+      const response = await axios.put(API_ENDPOINT.CHANGE_PASSWORD, {
         uId: userId,
         oldPassword,
         newPassword,

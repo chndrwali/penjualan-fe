@@ -14,7 +14,7 @@ const PRODUCT_API = {
 
   getWishProduct: async () => {
     try {
-      const response = await axios.get(API_ENDPOINT.GET_WISH_PRODUCT);
+      const response = await axios.post(API_ENDPOINT.GET_WISH_PRODUCT);
       return response.data;
     } catch (error) {
       console.error("Error while fetching wish products:", error);
@@ -24,7 +24,7 @@ const PRODUCT_API = {
 
   getProductByPrice: async () => {
     try {
-      const response = await axios.get(API_ENDPOINT.GET_PRODUCT_BY_PRICE);
+      const response = await axios.post(API_ENDPOINT.GET_PRODUCT_BY_PRICE);
       return response.data;
     } catch (error) {
       console.error("Error while fetching products by price:", error);
@@ -34,7 +34,7 @@ const PRODUCT_API = {
 
   getProductByCategory: async () => {
     try {
-      const response = await axios.get(API_ENDPOINT.GET_PRODUCT_BY_CATEGORY);
+      const response = await axios.post(API_ENDPOINT.GET_PRODUCT_BY_CATEGORY);
       return response.data;
     } catch (error) {
       console.error("Error while fetching products by category:", error);
@@ -44,7 +44,7 @@ const PRODUCT_API = {
 
   getCartProduct: async () => {
     try {
-      const response = await axios.get(API_ENDPOINT.GET_CART_PRODUCT);
+      const response = await axios.post(API_ENDPOINT.GET_CART_PRODUCT);
       return response.data;
     } catch (error) {
       console.error("Error while fetching cart products:", error);
@@ -68,7 +68,7 @@ const PRODUCT_API = {
 
   editProduct: async (productId, formData) => {
     try {
-      const response = await axios.post(
+      const response = await axios.put(
         API_ENDPOINT.EDIT_PRODUCT + `/${productId}`,
         formData,
         {
@@ -98,7 +98,7 @@ const PRODUCT_API = {
 
   getSingleProduct: async (productId) => {
     try {
-      const response = await axios.get(
+      const response = await axios.post(
         API_ENDPOINT.GET_SINGLE_PRODUCT + `/${productId}`
       );
       return response.data;
