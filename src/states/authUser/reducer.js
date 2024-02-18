@@ -1,14 +1,45 @@
-import { ActionType } from './action';
+import { ActionTypes } from './action';
 
-function authUserReducer(userData = null, action = {}) {
+const initialState = {
+  user: null,
+  token: null,
+  loading: false,
+  error: null,
+};
+
+const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.SET_AUTH_USER:
-      return action.payload.userData;
-    case ActionType.UNSET_AUTH_USER:
-      return null;
+    case ActionTypes.LOGIN_USER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case ActionTypes.LOGIN_USER_SUCCESS:
+      return {
+        ...state,
+        user: action.payload.user,
+        token: action.payload.token,
+        loading: false,
+        error: null,
+      };
+    case ActionTypes.LOGIN_USER_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case ActionTypes.LOGOUT_USER:
+      return {
+        ...state,
+        user: null,
+        token: null,
+        loading: false,
+        error: null,
+      };
     default:
-      return userData;
+      return state;
   }
-}
+};
 
-export default authUserReducer;
+export default authReducer;

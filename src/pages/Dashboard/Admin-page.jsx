@@ -1,8 +1,11 @@
-import DashboardAdmin from "../../components/Dashboard/dashboardAdmin";
+import Layout from "../../components/Dashboard/Layout";
+import DashboardComponent from "../../components/Dashboard/dashboardAdmin/index"
 
 function AdminPage() {
     return (
-        <DashboardAdmin />
+        <Layout>
+            <DashboardComponent />
+        </Layout>
     )
 }
 

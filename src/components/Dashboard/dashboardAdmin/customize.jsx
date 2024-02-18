@@ -1,23 +1,26 @@
+/* eslint-disable react/prop-types */
 import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { asyncUploadImage, toggleUploadSliderBtn } from "../../../states/uploadSlideImage/action";
+// import { asyncUploadImage, toggleUploadSliderBtn } from "../../../states/uploadSlideImage/action";
+import DeleteImageSection from "./DeleteImageSection";
 
 const Customize = () => {
   const dispatch = useDispatch();
   const uploadSliderBtn = useSelector(state => state.uploadImageSlide.isUploading);
 
-  const toggleUploadSliderBtnHandler = () => { // Ubah nama fungsi ini untuk menghindari konflik dengan nama variabel
-    dispatch(toggleUploadSliderBtn()); // Gunakan action yang baru dibuat
+  const toggleUploadSliderBtnHandler = () => {
+    // dispatch(toggleUploadSliderBtn());
   };
+
 
   useEffect(() => {
     // Fetch slider images here if needed
   }, [dispatch]);
 
-  const uploadImageHandler = (Image) => {
+  const uploadImageHandler = (image) => {
     const formData = new FormData();
-    formData.append('slideImage', Image);
-    dispatch(asyncUploadImage(formData));
+    formData.append('slideImage', image);
+    // dispatch(asyncUploadImage(formData));
   };
 
   return (
@@ -45,7 +48,12 @@ const Customize = () => {
           </div>
         ) : null}
       </div>
-      {uploadSliderBtn ? <UploadImageSection uploadImageHandler={uploadImageHandler} /> : null}
+      {uploadSliderBtn ? (
+        <Fragment>
+          <UploadImageSection uploadImageHandler={uploadImageHandler} />
+          <DeleteImageSection />
+        </Fragment>
+      ) : null}
     </Fragment>
   );
 };
@@ -91,5 +99,6 @@ const UploadImageSection = ({ uploadImageHandler }) => {
     </Fragment>
   );
 };
+
 
 export default Customize;

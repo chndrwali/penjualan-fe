@@ -1,57 +1,49 @@
 import AUTH_API from "../../api/auth-api";
 
-const ActionType = {
-  SET_AUTH_USER: 'SET_AUTH_USER',
-  UNSET_AUTH_USER: 'UNSET_AUTH_USER'
+export const ActionTypes = {
+  LOGIN_USER_REQUEST: 'LOGIN_USER_REQUEST',
+  LOGIN_USER_SUCCESS: 'LOGIN_USER_SUCCESS',
+  LOGIN_USER_FAILURE: 'LOGIN_USER_FAILURE',
+  LOGOUT_USER: 'LOGOUT_USER',
 };
 
-function setAuthUserActionCreator(userData) {
-    return {
-        type: ActionType.SET_AUTH_USER,
-        payload: {
-            userData
-        },
-    };
-}
+export const loginUserRequest = () => ({
+    type: ActionTypes.LOGIN_USER_REQUEST,
+  });
 
-function unsetAuthUserActionCreator() {
-    return {
-        type: ActionType.UNSET_AUTH_USER,
-        payload: {
-            userData: null,
-        },
-    };
-}
+  export const loginUserSuccess = (userData) => ({
+    type: ActionTypes.LOGIN_USER_SUCCESS,
+    payload: userData,
+  });
 
-function asyncSetAuthUser({ email, password }) {
-    return async (dispatch) => {   
-        try {
-            const userData = await AUTH_API.loginUser({ email, password });
-            dispatch(setAuthUserActionCreator(userData));
-        } catch (error) {
-            alert(error.message);
-        }
-    };
-}
+  export const loginUserFailure = (error) => ({
+    type: ActionTypes.LOGIN_USER_FAILURE,
+    payload: error,
+  });
 
-function asyncUnsetAuthUser() {
+  export const logoutSuccess = () => ({
+    type: ActionTypes.LOGOUT_USER,
+  });
+
+  export const loginUser = (email, password) => {
     return async (dispatch) => {
-        try {
-            // Hapus token JWT dari localStorage
-            AUTH_API.isAuthenticate('');
-            // Kirim aksi untuk menghapus status otentikasi pengguna
-            dispatch(unsetAuthUserActionCreator());
-        } catch (error) {
-            console.error("Error while logging out:", error);
-            throw error;
-        }
+      dispatch(loginUserRequest());
+      try {
+        const userData = await AUTH_API.loginUser(email, password);
+        AUTH_API.authenticateUser(userData.token);
+        dispatch(loginUserSuccess(userData));
+      } catch (error) {
+        dispatch(loginUserFailure(error.message));
+      }
     };
-}
+  };
 
-export {
-  ActionType,
-  setAuthUserActionCreator,
-  unsetAuthUserActionCreator,
-  asyncSetAuthUser,
-  asyncUnsetAuthUser
-};
+  export const logout = () => {
+    return async (dispatch) => {
+      // Hapus data pengguna dari penyimpanan lokal saat logout
+      localStorage.removeItem('token');
+      // Panggil action creator untuk logout
+      dispatch(logoutSuccess());
+    };
+  };
+

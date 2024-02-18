@@ -2,6 +2,24 @@ import axios from "axios";
 import API_ENDPOINT from "../globals/api-endpoint";
 
 const AUTH_API = {
+  getOwnProfile: async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('No token found');
+      }
+      const response = await axios.get(API_ENDPOINT.GET_OWN_PROFILE, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error while fetching own profile:', error);
+      throw error;
+    }
+  },
+  
   loginUser: async (email, password) => {
     try {
       const response = await axios.post(API_ENDPOINT.LOGIN, {
@@ -45,6 +63,10 @@ const AUTH_API = {
       console.error("Error while fetching all users:", error);
       throw error;
     }
+  },
+
+  authenticateUser: (token) => {
+    localStorage.setItem("token", JSON.stringify(token));
   },
 
   isAuthenticate: () => {

@@ -6,6 +6,7 @@ LOGIN: `${CONFIG.API_URL}/auth/signin`,
 REGISTER: `${CONFIG.API_URL}/auth/signup`,
 IS_ADMIN: `${CONFIG.API_URL}/auth/isadmin`,
 ALL_USER: `${CONFIG.API_URL}/auth/user`,
+GET_OWN_PROFILE: `${CONFIG.API_URL}/auth/profile`,
 
 // ==================== USER ====================
 GET_ALL_USER: `${CONFIG.API_URL}/users/all-user`,

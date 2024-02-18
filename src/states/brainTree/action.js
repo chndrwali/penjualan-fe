@@ -1,78 +1,63 @@
-import axios from "axios";
-import API_ENDPOINT from "../../globals/api-endpoint";
+import BRAINTREE_API from "../../api/braintree-api";
 
-const ActionType = {
+export const ActionTypes = {
   GET_BRAINTREE_TOKEN_REQUEST: 'GET_BRAINTREE_TOKEN_REQUEST',
   GET_BRAINTREE_TOKEN_SUCCESS: 'GET_BRAINTREE_TOKEN_SUCCESS',
   GET_BRAINTREE_TOKEN_FAILURE: 'GET_BRAINTREE_TOKEN_FAILURE',
-  PAYMENT_SUCCESS: 'PAYMENT_SUCCESS',
-  PAYMENT_REQUEST: 'PAYMENT_REQUEST',
-  PAYMENT_FAILURE: 'PAYMENT_FAILURE',
+  PAYMENT_PROCESS_REQUEST: 'PAYMENT_PROCESS_REQUEST',
+  PAYMENT_PROCESS_SUCCESS: 'PAYMENT_PROCESS_SUCCESS',
+  PAYMENT_PROCESS_FAILURE: 'PAYMENT_PROCESS_FAILURE',
 };
 
-const getBraintreeTokenRequest = () => ({
-  type: ActionType.GET_BRAINTREE_TOKEN_REQUEST,
+
+export const generateTokenRequest = () => ({
+  type: ActionTypes.GET_BRAINTREE_TOKEN_REQUEST,
 });
 
-const getBraintreeTokenSuccess = (token) => ({
-  type: ActionType.GET_BRAINTREE_TOKEN_SUCCESS,
+export const generateTokenSuccess = (token) => ({
+  type: ActionTypes.GET_BRAINTREE_TOKEN_SUCCESS,
   payload: token,
 });
 
-const getBraintreeTokenFailure = (error) => ({
-  type: ActionType.GET_BRAINTREE_TOKEN_FAILURE,
+export const generateTokenFailure = (error) => ({
+  type: ActionTypes.GET_BRAINTREE_TOKEN_FAILURE,
   payload: error,
 });
 
-const paymentRequest = () => ({
-  type: ActionType.PAYMENT_REQUEST,
+export const paymentProcessRequest = () => ({
+  type: ActionTypes.PAYMENT_PROCESS_REQUEST,
 });
 
-const paymentSuccess = (paymentResult) => ({
-  type: ActionType.PAYMENT_SUCCESS,
-  payload: paymentResult,
+export const paymentProcessSuccess = (result) => ({
+  type: ActionTypes.PAYMENT_PROCESS_SUCCESS,
+  payload: result,
 });
 
-const paymentFailure = (error) => ({
-  type: ActionType.PAYMENT_FAILURE,
+export const paymentProcessFailure = (error) => ({
+  type: ActionTypes.PAYMENT_PROCESS_FAILURE,
   payload: error,
 });
 
-const getBraintreeToken = () => {
+export const generateToken = () => {
   return async (dispatch) => {
-    dispatch(getBraintreeTokenRequest());
+    dispatch(generateTokenRequest());
     try {
-      const response = await axios.post(API_ENDPOINT.GET_TOKEN);
-      dispatch(getBraintreeTokenSuccess(response.data));
+      const token = await BRAINTREE_API.getToken();
+      dispatch(generateTokenSuccess(token));
     } catch (error) {
-      dispatch(getBraintreeTokenFailure(error));
+      dispatch(generateTokenFailure(error.message));
     }
   };
 };
 
-const processPayment = (amountTotal, paymentMethod) => {
+export const paymentProcess = (amountTotal, paymentMethod) => {
   return async (dispatch) => {
-    dispatch(paymentRequest());
+    dispatch(paymentProcessRequest());
     try {
-      const response = await axios.post(API_ENDPOINT.PAYMENT, {
-        amountTotal,
-        paymentMethod,
-      });
-      dispatch(paymentSuccess(response.data));
+      const result = await BRAINTREE_API.payment(amountTotal, paymentMethod);
+      dispatch(paymentProcessSuccess(result));
     } catch (error) {
-      dispatch(paymentFailure(error));
+      dispatch(paymentProcessFailure(error.message));
     }
   };
-};
-
-export {
-  ActionType,
-  getBraintreeToken,
-  processPayment,
-  getBraintreeTokenRequest,
-  getBraintreeTokenFailure,
-  getBraintreeTokenSuccess,
-  paymentFailure,
-  paymentSuccess,
-  paymentRequest
 };

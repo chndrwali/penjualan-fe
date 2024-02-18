@@ -1,6 +1,6 @@
 import { ActionType } from './action';
 
-function usersReducer(register = [], action = {}) {
+function registerReducer(register = [], action = {}) {
   switch (action.type) {
     case ActionType.RECEIVE_USER:
       return action.payload.register;
@@ -9,4 +9,4 @@ function usersReducer(register = [], action = {}) {
   }
 }
 
-export default usersReducer;
+export default registerReducer;

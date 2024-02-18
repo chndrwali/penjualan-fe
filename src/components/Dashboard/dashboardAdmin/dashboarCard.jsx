@@ -1,13 +1,13 @@
 import { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { asyncFetchDashboardData } from '../../../states/dashboardAdmin/action';
+// import { asyncFetchDashboardData } from '../../../states/dashboardAdmin/action';
 
 const DashboardCard = () => {
   const dispatch = useDispatch();
   const { dashboardData, isFetching, errorMessage } = useSelector((state) => state.dashboardData);
 
   useEffect(() => {
-    dispatch(asyncFetchDashboardData());
+    // dispatch(asyncFetchDashboardData());
   }, [dispatch]);
 
   return (

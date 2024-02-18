@@ -1,33 +1,17 @@
-import { Fragment, createContext, useReducer } from "react";
-import Layout from "../Layout";
+import { Fragment } from "react";
 import DashboardCard from "./dashboarCard";
 import Customize from "./customize";
-import TodaySell from "./todaySell";
-import { dashboardState, dashboardReducer } from "./dashboardContext";
+import SellTable from "./SellTable";
 
-export const DashboardContext = createContext();
 
 const DashboardComponent = () => {
   return (
     <Fragment>
       <DashboardCard />
       <Customize />
-      <TodaySell />
+      <SellTable />
     </Fragment>
   );
 };
 
-const DashboardAdmin = () => {
-  const [data, dispatch] = useReducer(dashboardReducer, dashboardState);
-  return (
-    <Fragment>
-      <DashboardContext.Provider value={{ data, dispatch }}>
-        <Layout>
-          <DashboardComponent />
-        </Layout>
-      </DashboardContext.Provider>
-    </Fragment>
-  );
-};
-
-export default DashboardAdmin;
+export default DashboardComponent;

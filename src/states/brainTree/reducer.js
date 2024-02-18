@@ -1,22 +1,45 @@
-import { ActionType } from './action';
+import { ActionTypes } from './action';
 
-function braintreeReducer(state = { token: null, loading: false, error: null }, action) {
+const initialState = {
+  token: null,
+  result: null,
+  loading: false,
+  error: null,
+};
+
+const braintreeReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.GET_BRAINTREE_TOKEN_REQUEST:
-      return { ...state, loading: true, error: null };
-    case ActionType.GET_BRAINTREE_TOKEN_SUCCESS:
-      return { ...state, loading: false, token: action.payload, error: null };
-    case ActionType.GET_BRAINTREE_TOKEN_FAILURE:
-      return { ...state, loading: false, error: action.payload };
-    case ActionType.PAYMENT_REQUEST:
-      return { ...state, loading: true, error: null };
-    case ActionType.PAYMENT_SUCCESS:
-      return { ...state, loading: false, paymentResult: action.payload, error: null };
-    case ActionType.PAYMENT_FAILURE:
-      return { ...state, loading: false, error: action.payload };
+    case ActionTypes.GET_BRAINTREE_TOKEN_REQUEST:
+    case ActionTypes.PAYMENT_PROCESS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case ActionTypes.GET_BRAINTREE_TOKEN_SUCCESS:
+      return {
+        ...state,
+        token: action.payload,
+        loading: false,
+        error: null,
+      };
+    case ActionTypes.PAYMENT_PROCESS_SUCCESS:
+      return {
+        ...state,
+        result: action.payload,
+        loading: false,
+        error: null,
+      };
+    case ActionTypes.GET_BRAINTREE_TOKEN_FAILURE:
+    case ActionTypes.PAYMENT_PROCESS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }
-}
+};
 
 export default braintreeReducer;

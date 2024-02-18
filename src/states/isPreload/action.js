@@ -1,5 +1,5 @@
-import USERS_API from "../../api/users-api";
-import { setAuthUserActionCreator } from "../authUser/action";
+import AUTH_API from "../../api/auth-api";
+import { loginUser } from "../authUser/action";
 
 const ActionType = {
     SET_IS_PRELOAD: 'SET_IS_PRELOAD',
@@ -18,11 +18,11 @@ function asyncPreloadProcess() {
     return async (dispatch) => {
       try {
         // preload process
-        const userData = await USERS_API.getUserById();
-        dispatch(setAuthUserActionCreator(userData));
+        const userData = await AUTH_API.getOwnProfile();
+        dispatch(loginUser(userData));
       } catch (error) {
         // fallback process
-        dispatch(setAuthUserActionCreator(null));
+        dispatch(loginUser(null));
       } finally {
         // end preload process
         dispatch(setIsPreloadActionCreator(false));
