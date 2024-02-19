@@ -1,134 +1,177 @@
-import axios from "axios";
 import API_ENDPOINT from "../globals/api-endpoint";
 
 const PRODUCT_API = {
   getAllProduct: async () => {
     try {
-      const response = await axios.get(API_ENDPOINT.GET_ALL_PRODUCT);
-      return response.data;
+      const response = await fetch(API_ENDPOINT.GET_ALL_PRODUCT);
+      const data = await response.json();
+      return data;
     } catch (error) {
-      console.error("Error while fetching all products:", error);
+      console.error('Error while fetching all products:', error);
       throw error;
     }
   },
 
-  getWishProduct: async () => {
+  getProductByCategory: async (catId) => {
     try {
-      const response = await axios.post(API_ENDPOINT.GET_WISH_PRODUCT);
-      return response.data;
-    } catch (error) {
-      console.error("Error while fetching wish products:", error);
-      throw error;
-    }
-  },
-
-  getProductByPrice: async () => {
-    try {
-      const response = await axios.post(API_ENDPOINT.GET_PRODUCT_BY_PRICE);
-      return response.data;
-    } catch (error) {
-      console.error("Error while fetching products by price:", error);
-      throw error;
-    }
-  },
-
-  getProductByCategory: async () => {
-    try {
-      const response = await axios.post(API_ENDPOINT.GET_PRODUCT_BY_CATEGORY);
-      return response.data;
-    } catch (error) {
-      console.error("Error while fetching products by category:", error);
-      throw error;
-    }
-  },
-
-  getCartProduct: async () => {
-    try {
-      const response = await axios.post(API_ENDPOINT.GET_CART_PRODUCT);
-      return response.data;
-    } catch (error) {
-      console.error("Error while fetching cart products:", error);
-      throw error;
-    }
-  },
-
-  postProduct: async (formData) => {
-    try {
-      const response = await axios.post(API_ENDPOINT.POST_PRODUCT, formData, {
+      const response = await fetch(API_ENDPOINT.GET_PRODUCT_BY_CATEGORY, {
+        method: 'POST',
         headers: {
-          "Content-Type": "multipart/form-data",
+          'Content-Type': 'application/json',
         },
+        body: JSON.stringify({ catId }),
       });
-      return response.data;
+      const data = await response.json();
+      return data;
     } catch (error) {
-      console.error("Error while adding product:", error);
+      console.error('Error while fetching products by category:', error);
       throw error;
     }
   },
 
-  editProduct: async (productId, formData) => {
+  getProductByPrice: async (price) => {
     try {
-      const response = await axios.put(
-        API_ENDPOINT.EDIT_PRODUCT + `/${productId}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      return response.data;
+      const response = await fetch(API_ENDPOINT.GET_PRODUCT_BY_PRICE, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ price }),
+      });
+      const data = await response.json();
+      return data;
     } catch (error) {
-      console.error("Error while editing product:", error);
+      console.error('Error while fetching products by price:', error);
       throw error;
     }
   },
 
-  deleteProduct: async (productId) => {
+  getWishProduct: async (productArray) => {
     try {
-      const response = await axios.delete(
-        API_ENDPOINT.DELETE_PRODUCT + `/${productId}`
-      );
-      return response.data;
+      const response = await fetch(API_ENDPOINT.GET_WISH_PRODUCT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ productArray }),
+      });
+      const data = await response.json();
+      return data;
     } catch (error) {
-      console.error("Error while deleting product:", error);
+      console.error('Error while fetching wishlisted products:', error);
       throw error;
     }
   },
 
-  getSingleProduct: async (productId) => {
+  getCartProduct: async (productArray) => {
     try {
-      const response = await axios.post(
-        API_ENDPOINT.GET_SINGLE_PRODUCT + `/${productId}`
-      );
-      return response.data;
+      const response = await fetch(API_ENDPOINT.GET_CART_PRODUCT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ productArray }),
+      });
+      const data = await response.json();
+      return data;
     } catch (error) {
-      console.error("Error while fetching single product:", error);
+      console.error('Error while fetching cart products:', error);
       throw error;
     }
   },
 
-  addReview: async (productId, reviewData) => {
+  addProduct: async (productData) => {
     try {
-      const response = await axios.post(
-        API_ENDPOINT.ADD_REVIEW + `/${productId}`,
-        reviewData
-      );
-      return response.data;
+      const response = await fetch(API_ENDPOINT.POST_PRODUCT, {
+        method: 'POST',
+        body: productData,
+      });
+      const data = await response.json();
+      return data;
     } catch (error) {
-      console.error("Error while adding review:", error);
+      console.error('Error while adding product:', error);
       throw error;
     }
   },
 
-  deleteReview: async (productId, reviewId) => {
+  editProduct: async (productData) => {
     try {
-      const response = await axios.delete(
-        API_ENDPOINT.DELETE_REVIEW + `/${productId}/${reviewId}`
-      );
-      return response.data;
+      const response = await fetch(API_ENDPOINT.EDIT_PRODUCT, {
+        method: 'PUT',
+        body: productData,
+      });
+      const data = await response.json();
+      return data;
     } catch (error) {
-      console.error("Error while deleting review:", error);
+      console.error('Error while editing product:', error);
+      throw error;
+    }
+  },
+
+  deleteProduct: async (pId) => {
+    try {
+      const response = await fetch(API_ENDPOINT.DELETE_PRODUCT, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ pId }),
+      });
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error while deleting product:', error);
+      throw error;
+    }
+  },
+
+  getSingleProduct: async (pId) => {
+    try {
+      const response = await fetch(API_ENDPOINT.GET_SINGLE_PRODUCT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ pId }),
+      });
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error while fetching single product:', error);
+      throw error;
+    }
+  },
+
+  addReview: async (reviewData) => {
+    try {
+      const response = await fetch(API_ENDPOINT.ADD_REVIEW, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reviewData),
+      });
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error while adding review:', error);
+      throw error;
+    }
+  },
+
+  deleteReview: async (rId, pId) => {
+    try {
+      const response = await fetch(API_ENDPOINT.DELETE_REVIEW, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ rId, pId }),
+      });
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error while deleting review:', error);
       throw error;
     }
   },

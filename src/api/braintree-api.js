@@ -1,29 +1,39 @@
-import axios from "axios";
 import API_ENDPOINT from "../globals/api-endpoint";
 
 const BRAINTREE_API = {
-  getToken: async () => {
+  async generateToken() {
     try {
-      const response = await axios.post(API_ENDPOINT.GET_TOKEN);
-      return response.data;
+      const response = await fetch(API_ENDPOINT.GET_TOKEN, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      return data;
     } catch (error) {
-      console.error("Error while getting Braintree token:", error);
+      console.error('Error while generating client token:', error);
       throw error;
     }
   },
 
-  payment: async (amountTotal, paymentMethod) => {
+  // Function to process payment
+  async processPayment(amountTotal, paymentMethod) {
     try {
-      const response = await axios.post(API_ENDPOINT.PAYMENT, {
-        amountTotal,
-        paymentMethod,
+      const response = await fetch(API_ENDPOINT.PAYMENT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ amountTotal, paymentMethod }),
       });
-      return response.data;
+      const data = await response.json();
+      return data;
     } catch (error) {
-      console.error("Error while processing payment:", error);
+      console.error('Error while processing payment:', error);
       throw error;
     }
-  },
+  }
 };
 
 export default BRAINTREE_API;

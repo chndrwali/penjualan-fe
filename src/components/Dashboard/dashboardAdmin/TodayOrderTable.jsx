@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import moment from "moment";
 import { useDispatch } from "react-redux";
-import { deleteOrder } from "../../../states/ordersStates/action"; 
+// import { deleteOrder } from "../../../states/ordersStates/action"; 
 import PropTypes from "prop-types";
 
 const TodayOrderTable = ({ order }) => {
@@ -9,7 +9,7 @@ const TodayOrderTable = ({ order }) => {
 
   const handleDeleteOrder = (orderId) => {
     if (window.confirm("Are you sure you want to delete this order?")) {
-      dispatch(deleteOrder(orderId));
+      // dispatch(deleteOrder(orderId));
     }
   };
 

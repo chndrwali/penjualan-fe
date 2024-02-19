@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { image } from '../data/imgData';
-import { loginUser } from '../../../states/authUser/action';
+import { useAuth } from '../../../context/AuthContext'; // Impor useAuth dari AuthContext
+import { useEffect } from 'react';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const { isAuthenticated, loading, error, login } = useAuth(); // Gunakan useAuth untuk mengakses state dan fungsi-fungsi otentikasi
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -24,28 +24,23 @@ const LoginPage = () => {
     visible: { opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.8, ease: 'easeInOut' } },
   };
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      if (email === 'admin@gmail.com') {
+        navigate('/admin');
+      } else {
+        navigate('/home');
+      }
+      toast.success('Login berhasil!');
+    }
+  }, [isAuthenticated, email, navigate]);
+
   const handleLogin = () => {
     if (!email || !password) {
       toast.error('Email dan password harus diisi.');
       return;
     }
-    onLogin({ email, password });
-  };
-
-  const onLogin = ({ email, password }) => {
-    dispatch(loginUser({ email, password }))
-      .then(() => {
-        if (email === 'admin@gmail.com') {
-          navigate('/admin');
-        } else {
-          navigate('/home');
-        }
-        toast.success('Login berhasil!');
-      })
-      .catch((error) => {
-        console.error("Error while logging in:", error);
-        toast.error('Login gagal. Silakan periksa kredensial Anda.');
-      });
+    login({ email, password }); // Menggunakan fungsi login dari useAuth
   };
 
   const handleKeyPress = (e) => {

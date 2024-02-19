@@ -1,7 +1,7 @@
 // SellTable.js
 import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllOrders } from "../../../states/ordersStates/action";
+// import { getAllOrders } from "../../../states/ordersStates/action";
 import { Link } from "react-router-dom";
 import TodayOrderTable from "./TodayOrderTable";
 
@@ -10,7 +10,7 @@ const SellTable = () => {
   const ordersList = useSelector((state) => state.orders.orders);
 
   useEffect(() => {
-    dispatch(getAllOrders());
+    // dispatch(getAllOrders());
   }, [dispatch]);
 
   return (

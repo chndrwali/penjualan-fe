@@ -1,47 +1,54 @@
-import axios from "axios";
 import API_ENDPOINT from "../globals/api-endpoint";
 
 const CUSTOMIZE_API = {
-  getSlideImage: async () => {
+  getSlideImages: async () => {
     try {
-      const response = await axios.get(API_ENDPOINT.GET_SLIDE_IMAGE);
-      return response.data;
+      const response = await fetch(API_ENDPOINT.GET_SLIDE_IMAGE);
+      const data = await response.json();
+      return data;
     } catch (error) {
-      console.error("Error while fetching slide images:", error);
+      console.error('Error while fetching slide images:', error);
       throw error;
     }
   },
 
   deleteSlideImage: async (id) => {
     try {
-      const response = await axios.delete(API_ENDPOINT.DELETE_SLIDE_IMAGE(id));
-      return response.data;
+      const response = await fetch(`${API_ENDPOINT.DELETE_SLIDE_IMAGE}/${id}`, {
+        method: 'DELETE',
+      });
+      const data = await response.json();
+      return data;
     } catch (error) {
-      console.error("Error while deleting slide image:", error);
+      console.error('Error while deleting slide image:', error);
       throw error;
     }
   },
 
-  uploadSlideImage: async (formData) => {
+  uploadSlideImage: async (slideImage) => {
     try {
-      const response = await axios.post(API_ENDPOINT.POST_SLIDE_IMAGE, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+      const formData = new FormData();
+      formData.append('slideImage', slideImage);
+
+      const response = await fetch(API_ENDPOINT.POST_SLIDE_IMAGE, {
+        method: 'POST',
+        body: formData,
       });
-      return response.data;
+      const data = await response.json();
+      return data;
     } catch (error) {
-      console.error("Error while uploading slide image:", error);
+      console.error('Error while uploading slide image:', error);
       throw error;
     }
   },
 
   getDashboardData: async () => {
     try {
-      const response = await axios.get(API_ENDPOINT.GET_DASHBOARD_DATA);
-      return response.data;
+      const response = await fetch(API_ENDPOINT.GET_DASHBOARD_DATA);
+      const data = await response.json();
+      return data;
     } catch (error) {
-      console.error("Error while fetching dashboard data:", error);
+      console.error('Error while fetching dashboard data:', error);
       throw error;
     }
   },

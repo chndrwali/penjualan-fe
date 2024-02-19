@@ -1,84 +1,69 @@
-import axios from "axios";
 import API_ENDPOINT from "../globals/api-endpoint";
 
+const fetchOptions = (method, data) => ({
+  method: method,
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token')}` // Menambahkan token jika tersedia di localStorage
+  },
+  body: JSON.stringify(data)
+});
+
 const AUTH_API = {
-  getOwnProfile: async () => {
+  async isAdmin(loggedInUserId) {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        throw new Error('No token found');
-      }
-      const response = await axios.get(API_ENDPOINT.GET_OWN_PROFILE, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return response.data;
+      const response = await fetch(API_ENDPOINT.IS_ADMIN, fetchOptions('POST', { loggedInUserId }));
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error while checking admin role:', error);
+      throw error;
+    }
+  },
+
+  async signup(userData) {
+    try {
+      const response = await fetch(API_ENDPOINT.REGISTER, fetchOptions('POST', userData));
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error while signing up:', error);
+      throw error;
+    }
+  },
+
+  async signin(userData) {
+    try {
+      const response = await fetch(API_ENDPOINT.LOGIN, fetchOptions('POST', userData));
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error while signing in:', error);
+      throw error;
+    }
+  },
+
+  async getAllUsers() {
+    try {
+      const response = await fetch(API_ENDPOINT.ALL_USER, fetchOptions('POST', {}));
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error while fetching all users:', error);
+      throw error;
+    }
+  },
+
+  async getOwnProfile() {
+    try {
+      const response = await fetch(API_ENDPOINT.GET_OWN_PROFILE, fetchOptions('GET', {}));
+      const data = await response.json();
+      return data;
     } catch (error) {
       console.error('Error while fetching own profile:', error);
       throw error;
     }
-  },
-  
-  loginUser: async (email, password) => {
-    try {
-      const response = await axios.post(API_ENDPOINT.LOGIN, {
-        email: email,
-        password: password,
-      });
-      return response.data;
-    } catch (error) {
-      console.error("Error while logging in:", error);
-      throw error;
-    }
-  },
-
-  registerUser: async (userData) => {
-    try {
-      const response = await axios.post(API_ENDPOINT.REGISTER, userData);
-      return response.data;
-    } catch (error) {
-      console.error("Error while registering user:", error);
-      throw error;
-    }
-  },
-
-  isAdmin: async (loggedInUserId) => {
-    try {
-      const response = await axios.post(API_ENDPOINT.IS_ADMIN, {
-        loggedInUserId: loggedInUserId,
-      });
-      return response.data;
-    } catch (error) {
-      console.error("Error while checking admin status:", error);
-      throw error;
-    }
-  },
-
-  getAllUsers: async () => {
-    try {
-      const response = await axios.post(API_ENDPOINT.ALL_USER);
-      return response.data;
-    } catch (error) {
-      console.error("Error while fetching all users:", error);
-      throw error;
-    }
-  },
-
-  authenticateUser: (token) => {
-    localStorage.setItem("token", JSON.stringify(token));
-  },
-
-  isAuthenticate: () => {
-    const jwt = localStorage.getItem("token");
-    return jwt ? JSON.parse(jwt) : false;
-  },
-  
-
-  isAdminAuth: () => {
-    const jwt = localStorage.getItem("jwt");
-    return jwt ? JSON.parse(jwt).user.role === 1 : false;
-  },
+  }
 };
 
 export default AUTH_API;
